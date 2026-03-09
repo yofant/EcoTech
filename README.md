@@ -50,10 +50,12 @@ Ecotech/
 - [ ] **PENDIENTE**: Agregar funcionalidad a iconos de redes sociales
 
 ### 7. **Footer / Contacto**
-- [ ] **PENDIENTE**: Crear sección de contacto
-- [ ] **PENDIENTE**: Agregar formulario de contacto
+- [x] Sección de contacto agregada con encabezado y texto
+- [x] Formulario de contacto básico implementado y centrado
+- [ ] **PENDIENTE**: Agregar funcionalidad al formulario (envío real, validación de servidor)
 - [ ] **PENDIENTE**: Agregar información de contacto (teléfono, email, dirección)
-- [ ] **PENDIENTE**: Crear pie de página con derechos de autor
+- [x] Footer básico con derechos de autor añadido
+- [ ] **PENDIENTE**: Mejorar footer con enlaces útiles y redes sociales
 
 ## Imágenes Requeridas
 
