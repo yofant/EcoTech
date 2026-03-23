@@ -31,14 +31,13 @@ Ecotech/
 
 - [x] Descripción de la empresa
 - [x] Imagen destacada
-- [ ] **PENDIENTE**: Expandir contenido con misión y visión
 
 ### 4. **Servicios**
 
 - [x] 3 tarjetas de servicios
-- [ ] **PENDIENTE**: Cambiar títulos duplicados "Registro" por nombres reales (Ej: Consultoría, Soporte, Garantía)
-- [ ] **PENDIENTE**: Agregar íconos específicos según el servicio
-- [ ] **PENDIENTE**: Descripción única para cada servicio
+- [x] **PENDIENTE**: Cambiar títulos duplicados "Registro" por nombres reales (Ej: Consultoría, Soporte, Garantía)
+- [x] **PENDIENTE**: Agregar íconos específicos según el servicio
+- [x] **PENDIENTE**: Descripción única para cada servicio
 
 ### 5. **Portafolio**
 
@@ -50,8 +49,8 @@ Ecotech/
 
 - [x] 3 tarjetas de miembros del equipo
 - [x] Iconos de redes sociales (Facebook, Twitter, LinkedIn, Instagram)
-- [ ] **PENDIENTE**: Reemplazar nombres placeholder por nombres reales
-- [ ] **PENDIENTE**: Cambiar imagen "Persona1.png" por fotos individuales
+- [x] **PENDIENTE**: Reemplazar nombres placeholder por nombres reales
+- [x] **PENDIENTE**: Cambiar imagen "Persona1.png" por fotos individuales
 - [ ] **PENDIENTE**: Agregar funcionalidad a iconos de redes sociales
 
 ### 7. **Footer / Contacto**
@@ -71,7 +70,7 @@ Verificar que existan todas las imágenes en la carpeta `images/`:
 - [x] Imagen4.png (Acerca de nosotros)
 - [x] Recoleccion.png, Reacondicionamiento.png, Trazabilidad.png (Portafolio)
 - [x] Persona1.png (Miembros del equipo - se usa 3 veces)
-- [ ] **RECOMENDACIÓN**: Cambiar Persona1.png por tres imágenes diferentes (Persona2.png, Persona3.png)
+- [x] **RECOMENDACIÓN**: Cambiar Persona1.png por tres imágenes diferentes (Persona2.png, Persona3.png)
 
 ## Estilos CSS
 
@@ -162,5 +161,12 @@ Todos los enlaces actualmente son `href="#"`:
 
 ---
 
-**Última actualización**: 8 de marzo de 2026
+**Última actualización**: 22 de marzo de 2026
 **Estado**: En desarrollo
+
+## Cambios recientes
+- Corrección ortográfica: “docuemntacion” → “documentación”
+- Fecha actualizada a 22 de marzo de 2026
+- Mantener checklist actualizado para fase de revisión
+- Nota: realizar deploy solo luego de completar formularios y enlaces internos
+
