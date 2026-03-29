@@ -20,7 +20,7 @@ Ecotech/
 
 - [x] Barra de navegación fija con logo "EcoTech"
 - [x] Menú responsivo en dispositivos móviles
-- [ ] **PENDIENTE**: Enlazar menú a secciones reales (Inicio, Registrate, Servicios, Contacto, Nosotros)
+- [x] Enlazar menú a secciones reales (Inicio, Registrate, Servicios, Contacto, Nosotros)
 
 ### 2. **Carrusel de Imágenes**
 
@@ -35,9 +35,9 @@ Ecotech/
 ### 4. **Servicios**
 
 - [x] 3 tarjetas de servicios
-- [x] **PENDIENTE**: Cambiar títulos duplicados "Registro" por nombres reales (Ej: Consultoría, Soporte, Garantía)
-- [x] **PENDIENTE**: Agregar íconos específicos según el servicio
-- [x] **PENDIENTE**: Descripción única para cada servicio
+- [x] Cambiar títulos duplicados "Registro" por nombres reales (Recoleccion, Reacondicionamiento, Trazabilidad)
+- [ ] Agregar íconos específicos según el servicio
+- [x] Descripción única para cada servicio
 
 ### 5. **Portafolio**
 
@@ -49,9 +49,9 @@ Ecotech/
 
 - [x] 3 tarjetas de miembros del equipo
 - [x] Iconos de redes sociales (Facebook, Twitter, LinkedIn, Instagram)
-- [x] **PENDIENTE**: Reemplazar nombres placeholder por nombres reales
-- [x] **PENDIENTE**: Cambiar imagen "Persona1.png" por fotos individuales
-- [ ] **PENDIENTE**: Agregar funcionalidad a iconos de redes sociales
+- [x] Reemplazar nombres placeholder por nombres reales
+- [x] Cambiar imagen "Persona1.png" por fotos individuales
+- [ ] Agregar funcionalidad a iconos de redes sociales
 
 ### 7. **Footer / Contacto**
 
@@ -76,17 +76,16 @@ Verificar que existan todas las imágenes en la carpeta `images/`:
 
 Archivo: `css/styles.css`
 
-- [ ] **PENDIENTE**: Verificar estilos para:
-  - Colores de tema (verde para Eco, tema oscuro general)
-  - Espaciado de secciones (section-padding)
-  - Estilos de tarjetas (card)
-  - Responsividad completa
-  - Animaciones y transiciones
-  - Hover effects en botones
+- [x] Colores de tema (verde para Eco, tema oscuro general)
+- [x] Espaciado de secciones (section-padding)
+- [x] Estilos de tarjetas (card)
+- [x] Responsividad completa (media queries móviles)
+- [x] Animaciones y transiciones (hover y animaciones de logo)
+- [x] Hover effects en botones
 
 ## Funcionalidad JavaScript
 
-- [ ] **PENDIENTE**: Crear archivo `js/script.js` para:
+- [ ] Crear archivo `js/script.js` para:
   - Validación de formulario de contacto
   - Envío de emails
   - Animaciones al scroll
@@ -100,10 +99,10 @@ Todos los enlaces actualmente son `href="#"`:
 | Elemento | Ubicación | Estado |
 |----------|-----------|--------|
 | Logo/Inicio | Navegación | [ ] PENDIENTE |
-| Registrate | Navegación | [ ] PENDIENTE |
-| Servicios | Navegación | [ ] PENDIENTE |
-| Contacto | Navegación | [ ] PENDIENTE |
-| Nosotros | Navegación | [ ] PENDIENTE |
+| Registrate | Navegación | [x] Hecho (en login y registro)
+| Servicios | Navegación | [x] Hecho
+| Contacto | Navegación | [x] Hecho
+| Nosotros | Navegación | [x] Hecho
 | Botones "Más información" | Carrusel | [ ] PENDIENTE |
 | Botones "Más información" | Servicios | [ ] PENDIENTE |
 | Botones "Más información" | Portafolio | [ ] PENDIENTE |
