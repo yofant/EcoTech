@@ -185,7 +185,11 @@ p {
     text-shadow: 0 2px 4px rgba(57, 188, 21, 0.3);
 }
 
-@media (max-width: 480px) {
+@media (max-width: 767PX) {
+    .navbar-nav {
+        font-size: 25px;
+        text-align: center;
+    }
 
     body {
         padding: 16px;
@@ -217,3 +221,4 @@ p {
     }
 
 }
+

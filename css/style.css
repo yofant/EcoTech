@@ -1,4 +1,4 @@
-*{
+* {
     font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
@@ -51,8 +51,8 @@ body {
     font-size: 15px;
     text-transform: uppercase;
     font-weight: 500;
-    
-    
+
+
 }
 
 .navbar-dark .navbar-brand {
@@ -63,7 +63,8 @@ body {
     letter-spacing: 2px;
 }
 
-.navbar-light .navbar-brand, .navbar-light .navbar-brand:hover {
+.navbar-light .navbar-brand,
+.navbar-light .navbar-brand:hover {
     color: #000;
 }
 
@@ -78,40 +79,59 @@ body {
 }
 
 .texto-efecto {
-  font-size: 2rem;
-  font-weight: bold;
-  color: #2ECC71; /* Verde base */
-  transition: all 0.3s ease; /* Suaviza el efecto */
+    font-size: 2rem;
+    font-weight: bold;
+    color: #2ECC71;
+    /* Verde base */
+    transition: all 0.3s ease;
+    /* Suaviza el efecto */
 }
 
 .texto-efecto:hover {
-  transform: translateY(-5px); /* Eleva el texto */
-  text-shadow: 0 0 10px #00ff99, 0 0 20px #00ff99; /* Retroiluminado verde */
-  color: #39FF14; /* Verde más brillante al pasar el mouse */
+    transform: translateY(-5px);
+    /* Eleva el texto */
+    text-shadow: 0 0 10px #00ff99, 0 0 20px #00ff99;
+    /* Retroiluminado verde */
+    color: #39FF14;
+    /* Verde más brillante al pasar el mouse */
 }
 
 .logo {
-  font-size: 3rem;          /* Ajusta el tamaño según tu logo */
-  font-weight: bold;
-  color: #2ECC71;           /* Verde base */
-  transition: all 0.3s ease;
+    font-size: 3rem;
+    /* Ajusta el tamaño según tu logo */
+    font-weight: bold;
+    color: #2ECC71;
+    /* Verde base */
+    transition: all 0.3s ease;
 }
 
 .logo {
-  font-size: 3rem;          /* Ajusta el tamaño según tu logo */
-  font-weight: bold;
-  color: #2ECC71;           /* Verde base */
-  animation: parpadeo 1s infinite; /* Parpadeo constante */
+    font-size: 3rem;
+    /* Ajusta el tamaño según tu logo */
+    font-weight: bold;
+    color: #2ECC71;
+    /* Verde base */
+    animation: parpadeo 1s infinite;
+    /* Parpadeo constante */
 }
 
 /* Animación de parpadeo tipo neón */
 @keyframes parpadeo {
-  0%   { text-shadow: 0 0 2px #00ff99, 0 0 10px #00ff99; color: #39FF14; }
-  50%  { text-shadow: none; color: #2ECC71; }
-  100% { text-shadow: 0 0 2px #00ff99, 0 0 10px #00ff99; color: #39FF14; }
+    0% {
+        text-shadow: 0 0 2px #00ff99, 0 0 10px #00ff99;
+        color: #39FF14;
+    }
+
+    50% {
+        text-shadow: none;
+        color: #2ECC71;
+    }
+
+    100% {
+        text-shadow: 0 0 2px #00ff99, 0 0 10px #00ff99;
+        color: #39FF14;
+    }
 }
-
-
 
 .portafolio.card {
     background: #161816;
@@ -120,11 +140,11 @@ body {
 }
 
 .services .card-body {
-   font-size: 50px;
+    font-size: 50px;
 }
 
 .team .card-body {
-   font-size: 20px;
+    font-size: 20px;
 }
 
 @media(max-width: 767px) {
@@ -133,7 +153,7 @@ body {
         text-align: center;
     }
 
-    .carousel-item{
+    .carousel-item {
         width: 100%;
         font-size: 14px;
         height: 70vh;
@@ -143,7 +163,7 @@ body {
         height: 70vh;
     }
 
-    .carousel-caption{
+    .carousel-caption {
         bottom: 125px;
     }
 
@@ -152,8 +172,8 @@ body {
     }
 
     .carousel-caption a {
-       padding: 10px 15px;
-       font-size: 15px;
+        padding: 10px 15px;
+        font-size: 15px;
     }
 
     .carousel-caption p {
@@ -166,7 +186,7 @@ body {
         padding-top: 50px;
     }
 
-    .card{
+    .card {
         margin-bottom: 30px;
     }
 
@@ -174,5 +194,3 @@ body {
         padding: 50px 0;
     }
 }
-
-
