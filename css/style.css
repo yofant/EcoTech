@@ -1,5 +1,5 @@
 *{
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
 body {
@@ -51,6 +51,8 @@ body {
     font-size: 15px;
     text-transform: uppercase;
     font-weight: 500;
+    
+    
 }
 
 .navbar-dark .navbar-brand {
@@ -74,6 +76,42 @@ body {
     font-size: 19px;
     line-height: 0.3;
 }
+
+.texto-efecto {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #2ECC71; /* Verde base */
+  transition: all 0.3s ease; /* Suaviza el efecto */
+}
+
+.texto-efecto:hover {
+  transform: translateY(-5px); /* Eleva el texto */
+  text-shadow: 0 0 10px #00ff99, 0 0 20px #00ff99; /* Retroiluminado verde */
+  color: #39FF14; /* Verde más brillante al pasar el mouse */
+}
+
+.logo {
+  font-size: 3rem;          /* Ajusta el tamaño según tu logo */
+  font-weight: bold;
+  color: #2ECC71;           /* Verde base */
+  transition: all 0.3s ease;
+}
+
+.logo {
+  font-size: 3rem;          /* Ajusta el tamaño según tu logo */
+  font-weight: bold;
+  color: #2ECC71;           /* Verde base */
+  animation: parpadeo 1s infinite; /* Parpadeo constante */
+}
+
+/* Animación de parpadeo tipo neón */
+@keyframes parpadeo {
+  0%   { text-shadow: 0 0 2px #00ff99, 0 0 10px #00ff99; color: #39FF14; }
+  50%  { text-shadow: none; color: #2ECC71; }
+  100% { text-shadow: 0 0 2px #00ff99, 0 0 10px #00ff99; color: #39FF14; }
+}
+
+
 
 .portafolio.card {
     background: #161816;
