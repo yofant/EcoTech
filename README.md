@@ -8,10 +8,22 @@ EcoTech es una empresa dedicada a la venta de productos tecnológicos con soluci
 ```
 Ecotech/
 ├── html/
-│   └── index.html          # Página principal
+│   ├── index.html                 # Landing (home) + secciones
+│   ├── login.html                 # Inicio de sesión (form)
+│   ├── Registro.html              # Registro de usuario (form)
+│   ├── contacto.html              # Página de contacto (form)
+│   └── terminos_condiciones.html  # Términos y condiciones (vista)
 ├── css/
-│   └── styles.css          # Estilos personalizados
+│   ├── style.css                  # Estilos de `index.html`
+│   ├── Login.css                  # Estilos de `login.html`
+│   ├── Registro.css               # Estilos de `Registro.html`
+│   ├── Contacto.css               # Estilos de `contacto.html`
+│   └── terminos_condiciones.css   # Estilos de `terminos_condiciones.html`
 └── images/                 # Imágenes del proyecto
+└── php/
+    ├── conexion.php               # Conexión MySQL
+    ├── registro.php               # Handler POST registro
+    └── login.php                  # Handler POST login
 ```
 
 ## Secciones del Sitio Web
@@ -20,7 +32,10 @@ Ecotech/
 
 - [x] Barra de navegación fija con logo "EcoTech"
 - [x] Menú responsivo en dispositivos móviles
-- [x] Enlazar menú a secciones reales (Inicio, Registrate, Servicios, Contacto, Nosotros)
+- [~] Enlaces del menú configurados parcialmente
+  - `index.html` enlaza a `login.html`, `contacto.html` y (pendiente) `nosotros.html`
+  - `login.html` y `Registro.html` enlazan a `servicios.html`/`nosotros.html` pero esas páginas **no existen aún**
+  - `contacto.html` tiene enlace a Inicio/Servicios pero “Nosotros” apunta a `servicios.html` (pendiente corregir)
 
 ### 2. **Carrusel de Imágenes**
 
@@ -36,31 +51,25 @@ Ecotech/
 
 - [x] 3 tarjetas de servicios
 - [x] Cambiar títulos duplicados "Registro" por nombres reales (Recoleccion, Reacondicionamiento, Trazabilidad)
-- [ ] Agregar íconos específicos según el servicio
+- [ ] Agregar íconos específicos según el servicio (opcional)
 - [x] Descripción única para cada servicio
-
-### 5. **Portafolio**
-
-- [x] 3 proyectos: Recolección, Reacondicionamiento, Trazabilidad
-- [x] Imágenes y descripciones
-- [ ] **PENDIENTE**: Agregar botones funcionales para ver detalles
 
 ### 6. **Equipo**
 
 - [x] 3 tarjetas de miembros del equipo
-- [x] Iconos de redes sociales (Facebook, Twitter, LinkedIn, Instagram)
+- [x] Íconos de redes sociales (Facebook, Twitter, LinkedIn, Instagram) visibles (sin enlaces)
 - [x] Reemplazar nombres placeholder por nombres reales
-- [x] Cambiar imagen "Persona1.png" por fotos individuales
-- [ ] Agregar funcionalidad a iconos de redes sociales
+- [x] Fotos individuales configuradas (3 imágenes `.jpeg`)
+- [ ] Agregar enlaces reales a iconos de redes sociales
 
 ### 7. **Footer / Contacto**
 
-- [x] Sección de contacto agregada con encabezado y texto
-- [x] Formulario de contacto básico implementado y centrado
-- [ ] **PENDIENTE**: Agregar funcionalidad al formulario (envío real, validación de servidor)
-- [ ] **PENDIENTE**: Agregar información de contacto (teléfono, email, dirección)
+- [x] Formulario de contacto existe (`contacto.html`)
+- [~] Envío del formulario (pendiente)
+  - Actualmente `contacto.html` envía a `php/registro.php` (no corresponde a contacto)
+  - Falta endpoint/handler específico de contacto (o cambiar acción a un endpoint correcto)
 - [x] Footer básico con derechos de autor añadido
-- [ ] **PENDIENTE**: Mejorar footer con enlaces útiles y redes sociales
+- [ ] Mejorar footer con enlaces útiles y redes sociales (opcional)
 
 ## Imágenes Requeridas
 
@@ -68,45 +77,26 @@ Verificar que existan todas las imágenes en la carpeta `images/`:
 
 - [x] Imagen1.png, Imagen2.png, Imagen3.png (Carrusel)
 - [x] Imagen4.png (Acerca de nosotros)
-- [x] Recoleccion.png, Reacondicionamiento.png, Trazabilidad.png (Portafolio)
-- [x] Persona1.png (Miembros del equipo - se usa 3 veces)
-- [x] **RECOMENDACIÓN**: Cambiar Persona1.png por tres imágenes diferentes (Persona2.png, Persona3.png)
+- [x] Recoleccion.png, Reacondicionamiento.png, Trazabilidad.png (Servicios)
+- [x] Fotos del equipo en `.jpeg` (3 imágenes)
 
 ## Estilos CSS
-
-Archivo: `css/styles.css`
-
-- [x] Colores de tema (verde para Eco, tema oscuro general)
-- [x] Espaciado de secciones (section-padding)
-- [x] Estilos de tarjetas (card)
-- [x] Responsividad completa (media queries móviles)
-- [x] Animaciones y transiciones (hover y animaciones de logo)
-- [x] Hover effects en botones
+- **`css/style.css`**: estilos del landing (`index.html`), tema oscuro + verde, navbar, carrusel, cards, responsive.
+- **`css/Login.css`, `css/Registro.css`, `css/Contacto.css`**: estilos de formularios (vistas separadas).
+- **`css/terminos_condiciones.css`**: estilos de términos.
 
 ## Funcionalidad JavaScript
 
-- [ ] Crear archivo `js/script.js` para:
-  - Validación de formulario de contacto
-  - Envío de emails
-  - Animaciones al scroll
-  - Efectos interactivos en botones
-  - Manejo de enlaces del menú
+- [ ] No hay JS propio actualmente (solo Bootstrap bundle por CDN).
+- [ ] (Opcional) Crear `js/script.js` para validaciones UI y/o mejorar UX.
 
 ## Enlaces Internos a Configurar
-
-Todos los enlaces actualmente son `href="#"`:
-
-| Elemento | Ubicación | Estado |
-|----------|-----------|--------|
-| Logo/Inicio | Navegación | [ ] PENDIENTE |
-| Registrate | Navegación | [x] Hecho (en login y registro)
-| Servicios | Navegación | [x] Hecho
-| Contacto | Navegación | [x] Hecho
-| Nosotros | Navegación | [x] Hecho
-| Botones "Más información" | Carrusel | [ ] PENDIENTE |
-| Botones "Más información" | Servicios | [ ] PENDIENTE |
-| Botones "Más información" | Portafolio | [ ] PENDIENTE |
-| Iconos sociales | Equipo | [ ] PENDIENTE |
+- **Pendientes críticos**
+  - [ ] Crear `html/servicios.html` (está linkeado desde varias páginas)
+  - [ ] Crear `html/nosotros.html` (está linkeado desde varias páginas)
+  - [ ] Cambiar `href="#"` del logo en varias páginas a `index.html`
+  - [ ] Conectar botones “Más información” del landing a secciones o páginas reales
+  - [ ] Convertir íconos sociales en enlaces reales (`<a href="...">`)
 
 ## Validación y Testing
 
@@ -125,47 +115,37 @@ Todos los enlaces actualmente son `href="#"`:
 
 ## SEO y Meta Información
 
-- [ ] **PENDIENTE**: Mejorar meta description
-- [ ] **PENDIENTE**: Agregar meta keywords relevantes
-- [ ] **PENDIENTE**: Agregar Open Graph tags (para redes sociales)
-- [ ] **PENDIENTE**: Agregar canonical URL
-- [ ] **PENDIENTE**: Crear sitemap.xml
-- [ ] **PENDIENTE**: Crear robots.txt
+- [ ] Mejorar `<title>` y agregar `meta description` en todas las páginas
+- [ ] (Opcional) Open Graph tags y favicon
+- [ ] (Opcional) `sitemap.xml` y `robots.txt`
 
 ## Seguridad
 
-- [ ] **PENDIENTE**: Implementar HTTPS
-- [ ] **PENDIENTE**: Validación de formularios (lado servidor)
-- [ ] **PENDIENTE**: Protección CSRF en formularios
-- [ ] **PENDIENTE**: Rate limiting en endpoint de contacto
+- [ ] Validación lado servidor (ya hay handlers PHP, pero requieren ajustes)
+- [ ] CSRF en formularios (cuando se publique)
+- [ ] Evitar credenciales hardcodeadas en `php/conexion.php` al hacer deploy
 
 ## Próximas Fases
 
 1. **Fase 1**: Completar contenido placeholder (nombres, descripciones)
-2. **Fase 2**: Implementar funcionalidad de contacto
-3. **Fase 3**: Crear página de registro
-4. **Fase 4**: Agregar CMS o panel administrativo
-5. **Fase 5**: Implementar carrito de compras (si se vende productos)
-6. **Fase 6**: SEO y optimización
-7. **Fase 7**: Deploy a servidor en vivo
+2. **Fase 2**: Completar páginas faltantes (`servicios.html`, `nosotros.html`) y enlaces
+3. **Fase 3**: Ajustar backend PHP (registro/login/contacto) y base de datos
+4. **Fase 4**: SEO y optimización
+5. **Fase 5**: Deploy a servidor en vivo
 
 ## Notas Importantes
 
-- El sitio usa **Bootstrap 5.3.8** como framework CSS
-- Se utilizan **Bootstrap Icons** para íconos
-- El diseño es **fully responsive**
+- `index.html` usa **Bootstrap 5.3.8** + **Bootstrap Icons**.
+- `login.html`, `Registro.html`, `contacto.html`, `terminos_condiciones.html` usan **Bootstrap 5.3.2** + **Font Awesome** (hay mezcla de versiones/CDNs).
 - Color principal: Verde (#28a745 - success)
 - Tema general: Oscuro (dark)
 - Navegación: Fixed (fija en la parte superior)
 
 ---
 
-**Última actualización**: 22 de marzo de 2026
+**Última actualización**: 29 de marzo de 2026
 **Estado**: En desarrollo
 
 ## Cambios recientes
-- Corrección ortográfica: “docuemntacion” → “documentación”
-- Fecha actualizada a 22 de marzo de 2026
-- Mantener checklist actualizado para fase de revisión
-- Nota: realizar deploy solo luego de completar formularios y enlaces internos
+- README alineado a archivos reales (`html/`, `css/`, `php/`) y pendientes reales.
 
