@@ -1,0 +1,246 @@
+/* Compensa el navbar fixed-top (Bootstrap) para que el contenido no quede debajo */
+:root {
+    --nav-offset: 72px;
+}
+
+body {
+    height: 100vh;
+    margin: 0;
+    background: linear-gradient(to right, #161816);
+    background-size: 300% 300%;
+    animation: gradientMove 15s ease infinite;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    color: #161816;
+    box-sizing: border-box;
+    padding-top: var(--nav-offset);
+}
+
+@keyframes gradientMove {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.navbar-nav a {
+    font-size: 15px;
+    text-transform: uppercase;
+    font-weight: 500;
+}
+
+.navbar-dark .navbar-brand {
+    color: #fff;
+    font-size: 25px;
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+.navbar-light .navbar-brand,
+.navbar-light .navbar-brand:hover {
+    color: #000;
+}
+
+.w-100 {
+    height: 100%;
+}
+
+.navbar-toggler {
+    padding: 1px 5px;
+    font-size: 19px;
+    line-height: 0.3;
+}
+
+.texto-efecto {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #2ECC71;
+    /* Verde base */
+    transition: all 0.3s ease;
+    /* Suaviza el efecto */
+}
+
+.texto-efecto:hover {
+    transform: translateY(-5px);
+    /* Eleva el texto */
+    text-shadow: 0 0 10px #00ff99, 0 0 20px #00ff99;
+    /* Retroiluminado verde */
+    color: #39FF14;
+    /* Verde más brillante al pasar el mouse */
+}
+
+.logo {
+    font-size: 3rem;
+    /* Ajusta el tamaño según tu logo */
+    font-weight: bold;
+    color: #2ECC71;
+    /* Verde base */
+    animation: parpadeo 1s infinite;
+    /* Parpadeo constante */
+}
+
+/* Animación de parpadeo tipo neón */
+@keyframes parpadeo {
+    0% {
+        text-shadow: 0 0 2px #00ff99, 0 0 10px #00ff99;
+        color: #39FF14;
+    }
+
+    50% {
+        text-shadow: none;
+        color: #2ECC71;
+    }
+
+    100% {
+        text-shadow: 0 0 2px #00ff99, 0 0 10px #00ff99;
+        color: #39FF14;
+    }
+}
+
+.card-box {
+    width: min(860px, 92vw);
+    max-height: calc(100vh - var(--nav-offset) - 32px);
+    overflow: auto;
+    padding: 40px 44px;
+    border-radius: 20px;
+    background: rgb(0, 0, 0, 0.25);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    animation: fadeIn 1s ease;
+}
+
+h4 {
+    text-align: center;
+    font-weight: 800;
+    font-size: 28px;
+    margin-bottom: 30px;
+    text-shadow: 0, 2px 4px rgba(0, 0, 0, 0.3);
+    color: #206A0C
+}
+
+.form-label {
+    font-weight: 700 !important;
+    font-size: 15px !important;
+    color: #206A0C !important;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    margin-bottom: 6px !important;
+}
+
+.input-group-text {
+    background: #206A0C;
+    border: none;
+    color: #000 !important;
+    font-size: 18px;
+    padding: 10px 12px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.form-control {
+    background: rgba(255, 255, 255, 0.8);
+    color: #000;
+    border: none;
+    font-weight: 600;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    border-radius: 8px;
+}
+
+.form-control::placeholder {
+    color: #000 !important;
+    opacity: 1 !important;
+}
+
+.form-control:focus {
+    background: rgba(32, 106, 12, 0.5);
+    box-shadow: 0 0 5px rgba(32, 106, 12, 0.5);
+    color: #206A0C;
+}
+
+.btn-main {
+    margin-top: 15px;
+    width: 100%;
+    padding: 12px;
+    border-radius: 10px;
+    background: linear-gradient(to right, #206A0C, #39BC15);
+    border: none;
+    font-size: 17px;
+    font-weight: 800;
+    color: #000000 !important;
+    transition: 0.3s ease;
+}
+
+.btn-main:hover {
+    background-position: right;
+    transform: translateY(-6px);
+    box-shadow: 0 8px 15px rgba(57, 188, 21, 0.5);
+}
+
+p a {
+    color: #39BC15 !important;
+    text-shadow: none;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+p a:hover {
+    text-decoration: underline;
+}
+
+p {
+    color: rgba(233, 255, 233, 0.92) !important;
+    text-shadow: none;
+    font-size: 14px;
+    line-height: 1.65;
+    letter-spacing: 0.2px;
+    margin: 0;
+    white-space: pre-line;
+    text-align: left;
+}
+
+@media (max-width: 767PX) {
+    .navbar-nav {
+        font-size: 25px;
+        text-align: center;
+    }
+
+    body {
+        padding: calc(var(--nav-offset) + 16px) 16px 16px;
+        align-items: flex-start;
+    }
+
+    .card-box {
+        margin-top: 30px;
+        width: 100%;
+        max-height: calc(100vh - var(--nav-offset) - 32px);
+        padding: 20px 18px;
+        border-radius: 16px;
+    }
+
+    h4 {
+        font-size: 24px;
+    }
+
+    .form-label {
+        font-size: 14px !important;
+    }
+
+    .input-group-text {
+        font-size: 16px;
+        padding: 8px 10px;
+    }
+
+    .btn-main {
+        font-size: 16px;
+        padding: 10px;
+    }
+
+}
