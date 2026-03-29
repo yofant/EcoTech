@@ -1,29 +1,22 @@
 <?php
 include("conexion.php");
 
-$usuario  = $_POST['usuario'];
-$password = $_POST['contrasena'];
+if (isset($_POST['correo']) && isset($_POST['contrasena'])) {
+    $correo     = $_POST['correo'];
+    $contrasena = $_POST['contrasena'];
 
-// Consulta preparada para evitar inyecciones SQL
-$stmt = $conn->prepare("SELECT password FROM usuarios WHERE usuario = ?");
-$stmt->bind_param("s", $usuario);
-$stmt->execute();
-$stmt->store_result();
+    $sql = "SELECT * FROM user WHERE correo = ? AND contrasena = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("ss", $correo, $contrasena);
+    $stmt->execute();
+    $result = $stmt->get_result();
 
-if ($stmt->num_rows > 0) {
-    $stmt->bind_result($hash);
-    $stmt->fetch();
-
-    // Verificar contraseña
-    if (password_verify($password, $hash)) {
-        echo "Login exitoso. Bienvenido, " . $usuario;
+    if ($result->num_rows > 0) {
+        echo "✅ Usuario encontrado. Bienvenido.";
     } else {
-        echo "Contraseña incorrecta.";
+        echo "❌ Usuario no encontrado.";
     }
 } else {
-    echo "Usuario no encontrado.";
+    echo "⚠️ No se recibieron datos del formulario.";
 }
-
-$stmt->close();
-$conn->close();
 ?>

@@ -52,12 +52,12 @@
 
     <div class="card-box">
         <h3>Crear Cuenta</h3>
-        <form>
+        <form method="POST" action="../php/registro.php">
             <div class="mb-3">
-                <label class="form-label">Primer Nombre</label>
+                <label class="form-label">Nombre</label>
                 <div class="input-group">
                     <span class="input-group-text"><i class="fas fa-user"></i></span>
-                    <input type="text" class="form-control" placeholder="Primer nombre" required />
+                    <input name="nombre" type="text" class="form-control" placeholder="Nombre" required />
                 </div>
             </div>
 
@@ -65,7 +65,7 @@
                 <label class="form-label">Primer Apellido</label>
                 <div class="input-group">
                     <span class="input-group-text"><i class="fas fa-user"></i></span>
-                    <input type="text" class="form-control" placeholder="Primer apellido" required />
+                    <input name="primer_apellido" type="text" class="form-control" placeholder="Primer apellido" required />
                 </div>
             </div>
 
@@ -73,7 +73,7 @@
                 <label class="form-label">Segundo Apellido</label>
                 <div class="input-group">
                     <span class="input-group-text"><i class="fas fa-user"></i></span>
-                    <input type="text" class="form-control" placeholder="Segundo apellido" required />
+                    <input name="segundo_apellido" type="text" class="form-control" placeholder="Segundo apellido" required />
                 </div>
             </div>
 
@@ -82,7 +82,7 @@
                 <label class="form-label">Correo Electrónico</label>
                 <div class="input-group">
                     <span class="input-group-text"><i class="fas fa-envelope"></i></span>
-                    <input type="email" class="form-control" placeholder="correo electronico" required />
+                    <input name="correo" type="email" class="form-control" placeholder="correo electronico" required />
                 </div>
             </div>
 
@@ -90,7 +90,7 @@
                 <label class="form-label">Contraseña</label>
                 <div class="input-group">
                     <span class="input-group-text"><i class="fas fa-lock"></i></span>
-                    <input type="password" class="form-control" placeholder="Crea una contraseña" required />
+                    <input name="contrasena" type="password" class="form-control" placeholder="Crea una contraseña" required />
                 </div>
             </div>
 
@@ -98,7 +98,7 @@
                 <label class="form-label">Confirmar Contraseña</label>
                 <div class="input-group">
                     <span class="input-group-text"><i class="fas fa-lock"></i></span>
-                    <input type="password" class="form-control" placeholder="Confirma tu contraseña" required />
+                    <input name="confir_contrasena" type="password" class="form-control" placeholder="Confirma tu contraseña" required />
                 </div>
             </div>
             <button type="submit" class="btn-main">Registrarse</button>
