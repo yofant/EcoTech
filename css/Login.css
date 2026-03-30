@@ -84,7 +84,7 @@ body {
     /* Ajusta el tamaño según tu logo */
     font-weight: bold;
     color: #2ECC71;
-    /* Verde base */
+    /* Verde un poco más oscuro */
     animation: parpadeo 1s infinite;
     /* Parpadeo constante */
 }
@@ -92,7 +92,7 @@ body {
 /* Animación de parpadeo tipo neón */
 @keyframes parpadeo {
     0% {
-        text-shadow: 0 0 2px #00ff99, 0 0 10px #00ff99;
+        text-shadow: 0 0 1px #00ff99, 0 0 10px #00ff99;
         color: #39FF14;
     }
 

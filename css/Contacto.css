@@ -94,7 +94,7 @@ body {
 /* Animación de parpadeo tipo neón */
 @keyframes parpadeo {
     0% {
-        text-shadow: 0 0 2px #00ff99, 0 0 10px #00ff99;
+        text-shadow: 0 0 1px #00ff99, 0 0 10px #00ff99;
         color: #39FF14;
     }
 
@@ -132,8 +132,10 @@ h3 {
     font-weight: 800;
     font-size: 28px;
     margin-bottom: 30px;
-    text-shadow: 0, 2px 4px rgba(0, 0, 0, 0.3);
-    color: #206A0C
+    /* Mismo retroiluminado que se usa en .logo/@keyframes parpadeo */
+    text-shadow: 0 0 1px #00ff99, 0 0 10px #00ff99;
+    color: #2ECC71;
+    animation: parpadeo 1s infinite;
 }
 
 .form-label {
