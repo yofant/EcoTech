@@ -47,6 +47,18 @@ body {
     padding-right: clamp(1rem, 3vw, 2.5rem);
 }
 
+/* Backend: imagen en columna propia, alineada a la derecha en desktop */
+@media (min-width: 768px) {
+    .herramientas-img-backend {
+        display: block;
+        max-height: 240px;
+        width: auto;
+        max-width: 100%;
+        margin-left: auto;
+        object-fit: contain;
+    }
+}
+
 .section-padding {
     padding: 70px 0;
 }
