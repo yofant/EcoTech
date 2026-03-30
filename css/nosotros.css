@@ -30,7 +30,7 @@ body {
 
 /* Tarjeta inferior: mismo ancho que las dos de arriba juntas (toda la fila) */
 .nosotros-card--wide {
-    max-width: 780px;
+    max-width: 965px;
     width: 100%;
     margin-left: auto;
     margin-right: auto;
