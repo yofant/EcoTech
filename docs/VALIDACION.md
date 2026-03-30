@@ -1,48 +1,68 @@
-## Validación de la web (estado actual)
+# Validación y estado técnico — EcoTech
 
-### Inventario real de páginas (carpeta `html/`)
+## Inventario de páginas (`html/`)
 
-- **`index.html`**: Landing principal con navbar, carrusel, “¿Quiénes somos?”, servicios (cards), equipo, formulario básico (solo UI) y footer.
-- **`login.html`**: Formulario de inicio de sesión (POST a `php/login.php`).
-- **`Registro.html`**: Formulario de registro (POST a `php/registro.php`).
-- **`contacto.html`**: Formulario de “Contactanos” (POST a `php/registro.php` actualmente).
-- **`terminos_condiciones.html`**: Vista de términos y condiciones.
+| Archivo | Contenido resumido |
+|---------|-------------------|
+| `index.html` | Landing: navbar, carrusel, secciones, equipo, formulario UI, footer |
+| `servicios.html` | Servicios extendidos + imágenes |
+| `nosotros.html` | Historia, misión, impacto, proceso, métricas, CTA |
+| `herramientas.html` | Stack tecnológico (Frontend / Backend / Nube) |
+| `login.html` | Login → `php/login.php` |
+| `Registro.html` | Registro → `php/registro.php` |
+| `contacto.html` | Formulario contacto; script términos |
+| `terminos_condiciones.html` | Texto legal |
 
-### Lo que ya está resuelto (OK)
+**Nota:** Las páginas `servicios.html`, `nosotros.html` y `herramientas.html` **existen** y están enlazadas desde distintas partes del sitio; el menú entre páginas puede no ser idéntico (ver `PAGINAS_Y_FLUJO.md`).
 
-- **UI base con Bootstrap**: navbar fija, secciones, cards, responsive básico.
-- **Estructura del proyecto**: separación por `html/`, `css/`, `images/`, `php/`.
-- **Registro (backend parcial)**: `php/registro.php` usa `prepare()` y `password_hash()` (aunque necesita correcciones).
-- **Términos y condiciones**: existe página y estilo dedicado.
+---
 
-### Lo que falta / pendientes (por prioridad)
+## Lo que está en buen estado (UI)
 
-#### Críticos (rompen navegación o funcionalidad)
+- Maquetación responsive con Bootstrap.
+- Tema oscuro + acentos verdes y efectos neón reutilizados en varias hojas (`servicios`, `nosotros`, `herramientas`, etc.).
+- **Contacto — cliente:** `Js/Valid_checkbox.js` valida el checkbox de términos antes de enviar y muestra mensaje si falta marcar.
 
-- **Páginas faltantes**: existen enlaces a `html/servicios.html` y `html/nosotros.html`, pero **no están creadas**.
-- **Logo sin enlace**: en varias páginas el logo tiene `href="#"` (debería llevar a `index.html`).
-- **Contacto enviando a registro**: `contacto.html` hace POST a `php/registro.php` (no corresponde). Falta un handler propio (por ejemplo `php/contacto.php`) o ajustar el action.
-- **Login vs contraseñas**:
-  - En `php/registro.php` se intenta hashear contraseña.
-  - En `php/login.php` se consulta `WHERE correo = ? AND contrasena = ?` (comparación en claro), lo que no funciona correctamente con hash. Debe usarse `password_verify()`.
+---
 
-#### Importantes (calidad y coherencia)
+## Pendientes importantes (backend y coherencia)
 
-- **Idioma de las páginas**: varias están con `<html lang="en">` aunque el contenido es español (debería ser `es`).
-- **Mezcla de CDNs/versiones**: `index.html` usa Bootstrap 5.3.8 + Bootstrap Icons, mientras otras páginas usan Bootstrap 5.3.2 + Font Awesome.
-- **Checkbox de términos**: en `contacto.html` existe checkbox pero no se valida/obliga (ni del lado cliente ni servidor).
-- **Accesibilidad mínima**: revisar `alt`, contraste, foco de teclado, labels correctos.
+### Críticos para datos y seguridad
 
-#### Opcionales (mejoras)
+1. **Contacto → PHP**  
+   `contacto.html` sigue enviando a `php/registro.php`. Lo correcto es un handler dedicado (p. ej. `php/contacto.php`) que guarde o envíe mensajes sin mezclar con registro de usuarios.
 
-- **SEO**: `meta description`, OpenGraph, favicon, títulos más descriptivos.
-- **Footer**: añadir datos de contacto y enlaces útiles.
+2. **Login y contraseñas**  
+   Si el registro usa `password_hash`, el login debe usar `password_verify()`. Evitar comparar la contraseña en claro con el hash en base de datos.
 
-### Checklist rápido para “cierre” de entrega
+3. **Credenciales**  
+   No subir credenciales reales en `conexion.php` en repositorios públicos; usar variables de entorno en despliegne.
 
-- [ ] Crear `html/servicios.html` y `html/nosotros.html` (o quitar enlaces hasta que existan).
-- [ ] Unificar navegación en todas las páginas (mismo menú y enlaces).
-- [ ] Implementar backend correcto de login (hash + `password_verify`).
-- [ ] Crear endpoint real de contacto (o definir alcance: contacto solo UI).
-- [ ] Validar HTML (W3C) y responsive básico (mobile/tablet/desktop).
+### Calidad y mantenimiento
 
+4. **`lang` del documento**  
+   Varias páginas tienen `lang="en"` con texto en español; conviene `lang="es"`.
+
+5. **Versiones CDN**  
+   Mezcla Bootstrap 5.3.8 (index) y 5.3.2 (algunos formularios). Unificar o documentar la decisión.
+
+6. **Accesibilidad**  
+   Revisar `alt` en todas las imágenes, orden de encabezados, contraste y foco en teclado.
+
+7. **SEO**  
+   `meta description`, favicon, títulos descriptivos por página.
+
+---
+
+## Checklist rápido antes de entregar
+
+- [ ] Formulario de contacto con `action` y PHP acordes al alcance del trabajo.
+- [ ] Login alineado con hash del registro.
+- [ ] Menú coherente en todas las páginas (mismos enlaces donde aplique).
+- [ ] `lang="es"` donde el contenido es español.
+- [ ] Prueba en móvil / tablet / escritorio.
+- [ ] Validador W3C HTML (muestras por página principal).
+
+---
+
+**Última revisión:** 29 de marzo de 2026
