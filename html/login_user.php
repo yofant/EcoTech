@@ -14,6 +14,9 @@
 
     <!-- Estilos personalizados -->
     <link rel="stylesheet" href="../css/Login.css" />
+
+    <!-- CDN de SweetAlert2 para alertas -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 <body>
@@ -30,7 +33,7 @@
                 <ul class="navbar-nav ms-auto">
                     <!-- Enlaces de navegación principales -->
                     <li class="nav-item">
-                        <a class="nav-link texto-efecto" href="index.html">Inicio</a>
+                        <a class="nav-link texto-efecto" href="index.php">Inicio</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link texto-efecto" href="servicios.html">Servicios</a>
@@ -48,6 +51,7 @@
 
     <div class="card-box">
         <h3 class="logo" style="font-size: 2.2rem; margin-bottom: 20px;">Iniciar Sesión</h3>
+
         <form action="../php/login.php" method="POST">
             <div class="mb-3">
                 <label class="form-label">Correo Electrónico</label>
@@ -67,9 +71,10 @@
             </div>
             <button type="submit" class="btn-main" style="font-size: 16px;">Iniciar Sesión</button>
         </form>
+
         <br>
         <p class="text-center mb-3" style="font-size: 14px">
-            ¿No tienes cuenta? <a href="Registro.html">Registrarte</a>
+            ¿No tienes cuenta? <a href="registro_user.php">Registrarte</a>
         </p>
     </div>
 
@@ -77,6 +82,20 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
         crossorigin="anonymous"></script>
+
+        <script src="../Js/alertas.js"></script>
+
+        <script>
+            // Obtener el parámetro status de la URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const status = urlParams.get('status');
+
+            // Si hay un valor status, mostrar la alerta correspondiente
+            if (status) {
+                mostrarAlerta(status);
+            }
+        </script>
+
 </body>
 
 </html>

@@ -1,30 +1,42 @@
 <?php
 include("conexion.php");
-if (isset($_POST['correo']) && isset($_POST['contrasena'])) {
-    $correo     = $_POST['correo'];
-    $contrasena = $_POST['contrasena'];
 
-    // Buscar el usuario por correo
-    $sql = "SELECT * FROM usuarios WHERE correo = ?";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("s", $correo);
-    $stmt->execute();
-    $result = $stmt->get_result();
+$status = "";
 
-    if ($result->num_rows > 0) {
-        $usuario = $result->fetch_assoc();
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if (isset($_POST['correo']) && isset($_POST['contrasena'])) {
 
-        // Verificar la contraseña encriptada
-        if (password_verify($contrasena, $usuario['contrasena'])) {
-            echo "Usuario encontrado. Bienvenido.";
+        $correo     = $_POST['correo'];
+        $contrasena = $_POST['contrasena'];
+
+        $sql = "SELECT * FROM usuarios WHERE correo = ?";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("s", $correo);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        if ($result->num_rows > 0) {
+            $usuario = $result->fetch_assoc();
+
+            if (password_verify($contrasena, $usuario['contrasena'])) {
+            header("Location: ../html/login_user.php?status=success");
+            exit();
+    
+            } else {
+                header("Location: ../html/login_user.php?status=error_pass");
+                exit();
+            }
+
         } else {
-            echo "Contraseña incorrecta.";
+            header("Location: ../html/login_user.php?status=error_user");
+            exit();
+
         }
+
     } else {
-        echo "Usuario no encontrado.";
+        header("Location: ../html/login_user.php?status=error_data");
+        exit();
     }
-} else {
-    echo "No se recibieron datos del formulario.";
 }
 
 ?>

@@ -14,6 +14,9 @@
 
     <!-- Estilos personalizados -->
     <link rel="stylesheet" href="../css/Registro.css" />
+
+     <!-- CDN de SweetAlert2 para alertas -->
+     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 <body>
@@ -119,6 +122,19 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
         crossorigin="anonymous"></script>
+
+        <script src="../Js/alertas.js"></script>
+
+        <script>
+            // Obtener el parámetro status de la URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const status = urlParams.get('status');
+
+            // Si hay un valor status, mostrar la alerta correspondiente
+            if (status) {
+                mostrarAlerta(status);
+            }
+        </script>
 </body>
 
 </html>

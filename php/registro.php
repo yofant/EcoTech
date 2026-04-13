@@ -26,14 +26,17 @@ if (
     $stmt->bind_param("ssssss", $nombre, $primer_apellido, $segundo_apellido, $correo, $hash, $rol);
 
     if ($stmt->execute()) {
-        echo " Usuario registrado correctamente.";
+        header("Location: ../html/registro_user.php?status=user_create");
+            exit();
     } else {
-        echo " Error al registrar usuario: " . $conn->error;
+        header("Location: ../html/registro_user.php?status=failed");
+            exit();
     }
 
     $stmt->close();
     $conn->close();
 } else {
-    echo " No se recibieron todos los datos del formulario.";
+    header("Location: ../html/registro_user?status=incomplete");
+            exit();
 }
 ?>

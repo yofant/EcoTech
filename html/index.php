@@ -48,7 +48,7 @@
           <ul class="navbar-nav ms-auto">
             <!-- Enlaces de navegación principales -->
             <li class="nav-item">
-              <a class="nav-link texto-efecto" href="login.html"
+              <a class="nav-link texto-efecto" href="login_user.php"
                 >Iniciar Sesión</a
               >
             </li>
@@ -465,7 +465,6 @@
       integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
       crossorigin="anonymous"
     ></script>
-    <!-- PENDIENTE: Script personalizado -->
-    <!-- <script src="js/script.js"></script> -->
+
   </body>
 </html>
