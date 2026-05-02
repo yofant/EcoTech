@@ -14,7 +14,7 @@ if (($_SESSION['usuario']['rol'] ?? '') !== 'admin') {
 include("../php/conexion.php");
 
 $adminNombre = $_SESSION['usuario']['nombre'] ?: 'Administrador';
-$panelesPermitidos = ['resumen', 'usuarios', 'acciones', 'estado'];
+$panelesPermitidos = ['resumen', 'usuarios', 'empresas', 'acciones', 'estado'];
 $activePanel = $_GET['panel'] ?? 'resumen';
 
 if (!in_array($activePanel, $panelesPermitidos, true)) {
@@ -22,6 +22,7 @@ if (!in_array($activePanel, $panelesPermitidos, true)) {
 }
 
 include("../php/admin_usuarios.php");
+include("../php/admin_empresas.php");
 include("../php/admin_estados.php");
 include("../php/admin_acciones.php");
 include("../php/admin_dashboard_data.php");
@@ -85,6 +86,10 @@ $conn->close();
                 <a href="#usuarios" class="admin-nav-link <?php echo $activePanel === 'usuarios' ? 'active' : ''; ?>" data-panel-target="usuarios">
                     <i class="fas fa-users"></i>
                     <span>Usuarios</span>
+                </a>
+                <a href="#empresas" class="admin-nav-link <?php echo $activePanel === 'empresas' ? 'active' : ''; ?>" data-panel-target="empresas">
+                    <i class="fas fa-building"></i>
+                    <span>Empresas</span>
                 </a>
                 <a href="#acciones" class="admin-nav-link <?php echo $activePanel === 'acciones' ? 'active' : ''; ?>" data-panel-target="acciones">
                     <i class="fas fa-bolt"></i>
@@ -356,6 +361,147 @@ $conn->close();
                                             <?php } else { ?>
                                                 <tr>
                                                     <td colspan="5">No hay usuarios disponibles para mostrar.</td>
+                                                </tr>
+                                            <?php } ?>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="panel-card wide-card dashboard-panel <?php echo $activePanel === 'empresas' ? 'is-active' : ''; ?>" id="empresas">
+                        <div class="panel-heading">
+                            <div>
+                                <p class="panel-kicker">Gestion de empresas</p>
+                                <h2>Crear, editar y eliminar empresas aliadas a EcoTech</h2>
+                            </div>
+                            <span class="panel-tag">Base de datos</span>
+                        </div>
+
+                        <?php if ($crudEmpresaMessage) { ?>
+                            <div class="admin-alert admin-alert-<?php echo htmlspecialchars($crudEmpresaMessageType ?? 'success'); ?>">
+                                <?php echo htmlspecialchars($crudEmpresaMessage); ?>
+                            </div>
+                        <?php } ?>
+
+                        <div class="users-admin-grid">
+                            <div class="users-form-card">
+                                <div class="users-form-head">
+                                    <h3><?php echo $modoEmpresaFormulario === 'editar' ? 'Editar empresa' : 'Nueva empresa'; ?></h3>
+                                    <p>
+                                        <?php echo $modoEmpresaFormulario === 'editar'
+                                            ? 'Actualiza los datos de la empresa aliada.'
+                                            : 'Registra una empresa asociada al proyecto. El identificador lo asigna la base de datos.'; ?>
+                                    </p>
+                                </div>
+
+                                <form action="admin_panel.php?panel=empresas" method="POST" class="admin-user-form">
+                                    <input type="hidden" name="empresa_crud_action" value="save_empresa" />
+                                    <?php if ($modoEmpresaFormulario === 'editar') { ?>
+                                        <input type="hidden" name="id_empresa" value="<?php echo htmlspecialchars((string) ($empresaForm['id_empresa'] ?? '')); ?>" />
+                                    <?php } ?>
+
+                                    <div class="form-field">
+                                        <label for="empresa_nombre">Nombre</label>
+                                        <input id="empresa_nombre" name="nombre" type="text" class="admin-input"
+                                            value="<?php echo htmlspecialchars($empresaForm['nombre'] ?? ''); ?>" required />
+                                    </div>
+
+                                    <div class="form-field">
+                                        <label for="empresa_nit">NIT</label>
+                                        <input id="empresa_nit" name="nit" type="text" class="admin-input"
+                                            value="<?php echo htmlspecialchars($empresaForm['nit'] ?? ''); ?>" required />
+                                    </div>
+
+                                    <div class="form-field">
+                                        <label for="empresa_direccion">Direccion</label>
+                                        <input id="empresa_direccion" name="direccion" type="text" class="admin-input"
+                                            value="<?php echo htmlspecialchars($empresaForm['direccion'] ?? ''); ?>" />
+                                    </div>
+
+                                    <div class="form-field">
+                                        <label for="empresa_telefono">Telefono</label>
+                                        <input id="empresa_telefono" name="telefono" type="text" class="admin-input"
+                                            value="<?php echo htmlspecialchars($empresaForm['telefono'] ?? ''); ?>" />
+                                    </div>
+
+                                    <div class="form-field">
+                                        <label for="empresa_correo_contacto">Correo de contacto</label>
+                                        <input id="empresa_correo_contacto" name="correo_contacto" type="email" class="admin-input"
+                                            value="<?php echo htmlspecialchars($empresaForm['correo_contacto'] ?? ''); ?>" required />
+                                    </div>
+
+                                    <div class="form-field">
+                                        <label for="empresa_fecha_registro">
+                                            <?php echo $modoEmpresaFormulario === 'editar' ? 'Fecha de registro' : 'Fecha de registro (opcional)'; ?>
+                                        </label>
+                                        <input id="empresa_fecha_registro" name="fecha_registro" type="datetime-local" class="admin-input"
+                                            value="<?php echo htmlspecialchars($empresaForm['fecha_registro'] ?? ''); ?>"
+                                            <?php echo $modoEmpresaFormulario === 'editar' ? 'readonly' : ''; ?> />
+                                        <?php if ($modoEmpresaFormulario === 'crear') { ?>
+                                            <p class="form-hint">Si lo dejas vacio, se usara la fecha y hora actuales.</p>
+                                        <?php } ?>
+                                    </div>
+
+                                    <div class="admin-form-actions">
+                                        <button type="submit" class="btn-admin btn-admin-primary">
+                                            <?php echo $modoEmpresaFormulario === 'editar' ? 'Guardar cambios' : 'Registrar empresa'; ?>
+                                        </button>
+                                        <?php if ($modoEmpresaFormulario === 'editar') { ?>
+                                            <a href="admin_panel.php?panel=empresas" class="btn-admin btn-admin-secondary">Cancelar</a>
+                                        <?php } ?>
+                                    </div>
+                                </form>
+                            </div>
+
+                            <div class="users-table-card">
+                                <div class="users-table-head">
+                                    <h3>Listado de empresas</h3>
+                                    <p><?php echo count($empresas); ?> empresas registradas</p>
+                                </div>
+
+                                <div class="table-responsive admin-table-wrap">
+                                    <table class="table admin-table admin-table-users">
+                                        <thead>
+                                            <tr>
+                                                <th>ID</th>
+                                                <th>Nombre</th>
+                                                <th>NIT</th>
+                                                <th>Telefono</th>
+                                                <th>Correo</th>
+                                                <th>Registro</th>
+                                                <th>Acciones</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php if (count($empresas) > 0) { ?>
+                                                <?php foreach ($empresas as $emp) { ?>
+                                                    <tr>
+                                                        <td>#<?php echo (int) ($emp['id_empresa'] ?? 0); ?></td>
+                                                        <td><?php echo htmlspecialchars($emp['nombre'] ?? ''); ?></td>
+                                                        <td><?php echo htmlspecialchars($emp['nit'] ?? ''); ?></td>
+                                                        <td><?php echo htmlspecialchars($emp['telefono'] ?? ''); ?></td>
+                                                        <td><?php echo htmlspecialchars($emp['correo_contacto'] ?? ''); ?></td>
+                                                        <td><?php echo htmlspecialchars($emp['fecha_registro'] ?? ''); ?></td>
+                                                        <td>
+                                                            <div class="table-actions">
+                                                                <a href="admin_panel.php?panel=empresas&empresa_action=edit&id_empresa=<?php echo (int) ($emp['id_empresa'] ?? 0); ?>"
+                                                                    class="btn-table-action btn-table-edit">
+                                                                    Editar
+                                                                </a>
+                                                                <a href="admin_panel.php?panel=empresas&empresa_action=delete&id_empresa=<?php echo (int) ($emp['id_empresa'] ?? 0); ?>"
+                                                                    class="btn-table-action btn-table-delete"
+                                                                    data-confirm-delete>
+                                                                    Eliminar
+                                                                </a>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                <?php } ?>
+                                            <?php } else { ?>
+                                                <tr>
+                                                    <td colspan="7">No hay empresas registradas.</td>
                                                 </tr>
                                             <?php } ?>
                                         </tbody>

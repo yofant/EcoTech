@@ -23,13 +23,15 @@ document.addEventListener("DOMContentLoaded", () => {
             currentUrl.searchParams.set("panel", targetId);
             currentUrl.searchParams.delete("user_action");
             currentUrl.searchParams.delete("id");
+            currentUrl.searchParams.delete("empresa_action");
+            currentUrl.searchParams.delete("id_empresa");
             window.history.replaceState({}, "", currentUrl);
         });
     });
 
     document.querySelectorAll("[data-confirm-delete]").forEach((link) => {
         link.addEventListener("click", (event) => {
-            const confirmed = window.confirm("¿Seguro que deseas eliminar este usuario?");
+            const confirmed = window.confirm("¿Seguro que deseas eliminar este registro?");
 
             if (!confirmed) {
                 event.preventDefault();

@@ -38,6 +38,7 @@
                 datasets: [
                     {
                         label: 'Ubicaciones registradas',
+                        data: values.slice(),
                         backgroundColor: coloresPorCantidad(sliceColors, values.length),
                         borderColor: 'rgba(255, 255, 255, 0.12)',
                         borderWidth: 1

@@ -434,6 +434,13 @@ body.admin-body {
     font-size: 0.95rem;
 }
 
+.form-field .form-hint {
+    margin: 0;
+    font-size: 0.82rem;
+    color: var(--text-soft);
+    line-height: 1.35;
+}
+
 .admin-input {
     width: 100%;
     padding: 13px 14px;
