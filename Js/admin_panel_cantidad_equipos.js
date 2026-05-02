@@ -4,8 +4,9 @@
         return;
     }
 
-    const labels = ['reacondicionados', 'reciclados', 'donados'];
-    const values = [10, 20, 30];
+    const chartData = (window.ADMIN_CHART_DATA && window.ADMIN_CHART_DATA.equipos) || {};
+    const labels = Array.isArray(chartData.labels) && chartData.labels.length ? chartData.labels : ['Sin activos'];
+    const values = Array.isArray(chartData.values) && chartData.values.length ? chartData.values : [0];
     const tickColor = '#9fc3a8';
     const gridColor = 'rgba(255, 255, 255, 0.08)';
 

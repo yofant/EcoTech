@@ -106,6 +106,7 @@
                         <option value="admin">Administrador</option>
                         <option value="cliente">Cliente</option>
                         <option value="operador">Operador</option>
+                        <option value="tecnico">Tecnico</option>
                     </select>
                 </div>
             </div>
