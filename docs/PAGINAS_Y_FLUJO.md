@@ -1,85 +1,143 @@
-# Páginas y flujo de navegación
+# Paginas y flujo de navegacion
 
-## Mapa de páginas (`html/`)
+## Entrada principal
 
-### Inicio — `index.html`
+La pagina de entrada real del proyecto es `html/index.php`.
 
-- Navbar: Login, Servicios, Contacto, Nosotros; logo → `index.html`
-- Carrusel (3 imágenes)
-- ¿Quiénes somos?, Servicios (3 cards), Equipo, bloque de comentarios (UI), footer
-- Estilos: `css/style.css`, Bootstrap 5.3.8, Bootstrap Icons
+Aunque varias vistas enlazan al logo o al menu usando `index.html`, en el repositorio actual no existe ese archivo. Para documentacion y pruebas, debe considerarse `index.php` como punto de inicio.
 
-### Servicios — `servicios.html`
+## Mapa de paginas en `html/`
 
-- Textos extensos por servicio: Recolección, Reacondicionamiento, Trazabilidad
-- Imagen de trazabilidad con tamaño acotado (`img-servicio-trazabilidad`)
-- Navbar (referencia actual): Inicio, Nosotros, Herramientas, Contacto
-- Estilos: `css/servicios.css` (tema `#161816`, neón, hover en cards)
+### `index.php`
 
-### Nosotros — `nosotros.html`
+- Landing principal de EcoTech.
+- Incluye navbar, carrusel, bloque "Quienes somos", seccion de servicios, equipo, formulario visual de comentarios y footer.
+- Usa `../css/style.css`.
+- Usa Bootstrap `5.3.8` y Bootstrap Icons.
+- Enlaza a `login_user.php`, `servicios.html`, `productos.html`, `contacto.html` y `nosotros.html`.
+- El formulario inferior es solo visual: su `action` actual es `#`.
 
-- Tarjetas: Sobre nosotros, Misión/visión/valores, Propuesta, Impacto, cómo trabajamos, métricas, CTA, bloque herramientas
-- Estilos: `css/nosotros.css`
-- Enlace útil: puede apuntar a `herramientas.html` desde el botón según tu implementación
+### `servicios.html`
 
-### Herramientas — `herramientas.html`
+- Pagina informativa con tres bloques extensos:
+- Recoleccion de residuos electronicos.
+- Reacondicionamiento tecnologico.
+- Trazabilidad y seguimiento.
+- Usa `../css/servicios.css`.
+- Navbar actual: Inicio, Nosotros, Herramientas, Contacto.
+- Tiene `lang="es"`.
 
-- Frontend, Backend, Nube (imágenes y listas de tecnologías)
-- Estilos: `css/herramientas.css`
+### `nosotros.html`
 
-### Login — `login.html`
+- Presenta la historia del proyecto, mision, vision, valores, propuesta, impacto, proceso y metricas.
+- Incluye CTA hacia `contacto.html` y `herramientas.html`.
+- Usa `../css/nosotros.css`.
+- Usa Bootstrap `5.3.8` y Bootstrap Icons.
+- Actualmente tiene `lang="en"` aunque el contenido esta en espanol.
 
-- POST → `php/login.php`
-- Enlace a `Registro.html`
-- Estilos: `css/Login.css`
+### `herramientas.html`
 
-### Registro — `Registro.html`
+- Describe el stack de trabajo y herramientas del equipo:
+- Frontend.
+- Backend.
+- AWS.
+- GitHub.
+- IA y entorno de desarrollo.
+- Herramientas de despliegue.
+- Usa `../css/herramientas.css`.
+- Incluye un boton de retorno hacia `index.html`.
+- Actualmente tiene `lang="en"` aunque el contenido esta en espanol.
 
-- POST → `php/registro.php`
-- Estilos: `css/Registro.css`
+### `contacto.html`
 
-### Contacto — `contacto.html`
+- Muestra un formulario corto con nombre, apellido y correo.
+- Incluye checkbox de terminos y enlace a `terminos_condiciones.html`.
+- Carga `../Js/Valid_checkbox.js`.
+- Usa `../css/Contacto.css`.
+- El formulario envia a `../php/registro.php`, lo que hoy no corresponde con un flujo de contacto real.
+- Actualmente tiene `lang="en"` aunque el contenido esta en espanol.
 
-- Formulario POST (actualmente `../php/registro.php` — **revisar** en producción)
-- Checkbox términos + script `../Js/Valid_checkbox.js`
-- Enlace a `terminos_condiciones.html`
-- Estilos: `css/Contacto.css`
+### `terminos_condiciones.html`
 
-### Términos — `terminos_condiciones.html`
+- Contiene el texto legal asociado al formulario de contacto.
+- Boton "Volver" hacia `contacto.html`.
+- Usa `../css/terminos_condiciones.css`.
+- Actualmente tiene `lang="en"` aunque el contenido esta en espanol.
 
-- Vista legal; botón volver a contacto según diseño
-- Estilos: `css/terminos_condiciones.css`
+### `login_user.php`
 
----
+- Formulario de inicio de sesion.
+- Envia por `POST` a `../php/login.php`.
+- Carga `../Js/alertas.js` y SweetAlert2 para mostrar estados como `success`, `error_pass`, `error_user` y `error_data`.
+- Usa `../css/Login.css`.
+- Enlaza a `registro_user.php`.
+- Actualmente tiene `lang="en"` aunque el contenido esta en espanol.
 
-## Backend (`php/`)
+### `registro_user.php`
 
-| Archivo        | Rol |
-|----------------|-----|
-| `conexion.php` | Conexión MySQL (`mysqli`) |
-| `registro.php` | Altas de usuario; hoy puede recibir también el POST de contacto |
-| `login.php`    | Autenticación (alinear con hash de contraseña) |
+- Formulario de registro de usuarios.
+- Envia por `POST` a `../php/registro.php`.
+- Solicita nombre, primer apellido, segundo apellido, correo, contrasena y rol.
+- Carga `../Js/alertas.js` y SweetAlert2.
+- Usa `../css/Registro.css`.
+- El enlace inferior apunta a `login.html`, pero el archivo correcto hoy es `login_user.php`.
+- Actualmente tiene `lang="en"` aunque el contenido esta en espanol.
 
----
+### `productos.html`
 
-## Estilos (`css/`) — resumen
+- Existe en el arbol del proyecto, pero esta incompleta.
+- Solo contiene navbar y referencias de estilos.
+- Enlaza a `login.html`, archivo que no existe.
+- Intenta cargar `.. /css/productos.css`, pero ese archivo no existe y la ruta contiene un espacio.
+- Actualmente tiene `lang="en"`.
 
-| Hoja | Uso principal |
-|------|----------------|
-| `style.css` | Landing |
-| `servicios.css` | Servicios |
-| `nosotros.css` | Nosotros |
-| `herramientas.css` | Herramientas |
-| `Login.css`, `Registro.css`, `Contacto.css`, `terminos_condiciones.css` | Formularios y legales |
+## Flujo actual de autenticacion
 
----
+### Registro
 
-## Coherencia del menú (recomendación)
+1. El usuario entra a `html/registro_user.php`.
+2. Completa el formulario.
+3. El formulario envia `POST` a `php/registro.php`.
+4. El backend genera un hash con `password_hash`.
+5. Si el registro sale bien, redirige a `registro_user.php?status=user_create`.
+6. Si falla, redirige con `status=failed`.
 
-Hoy cada HTML puede tener un subconjunto distinto de enlaces. Para entregas académicas o producción conviene **un mismo orden**, por ejemplo:
+### Login
 
-Inicio · Servicios · Nosotros · Herramientas · Contacto · (Login / Registro si aplica)
+1. El usuario entra a `html/login_user.php`.
+2. Completa correo y contrasena.
+3. El formulario envia `POST` a `php/login.php`.
+4. El backend consulta la tabla `usuarios` por correo.
+5. Valida la contrasena con `password_verify`.
+6. Redirige con `status=success`, `error_pass`, `error_user` o `error_data`.
 
----
+## Flujo actual de contacto
 
-**Última revisión:** 29 de marzo de 2026
+1. El usuario abre `html/contacto.html`.
+2. Marca el checkbox de terminos.
+3. `Js/Valid_checkbox.js` bloquea el envio si no acepta los terminos.
+4. Si el formulario se envia, hoy termina en `php/registro.php`.
+
+Observacion: este flujo no esta terminado. El backend espera campos de registro de usuario y no un mensaje de contacto.
+
+## Coherencia de navegacion
+
+El sitio no usa un menu unico en todas las paginas. El contenido actual muestra estos patrones:
+
+- `index.php` incluye Login, Servicios, Productos, Contacto y Nosotros.
+- `servicios.html` incluye Inicio, Nosotros, Herramientas y Contacto.
+- `nosotros.html` incluye Inicio y Servicios.
+- `herramientas.html` incluye Inicio, Servicios y Contacto.
+- `contacto.html` incluye Inicio, Servicios y Nosotros.
+- `login_user.php` y `registro_user.php` incluyen Inicio, Servicios, Contacto y Nosotros.
+
+## Recomendaciones de documentacion para futuras iteraciones
+
+- Unificar todos los enlaces de retorno a `index.php`.
+- Definir si `productos.html` seguira en el alcance del proyecto o si debe ocultarse.
+- Separar el formulario de contacto del flujo de registro.
+- Homogeneizar `lang`, navbar y version de Bootstrap.
+
+## Ultima revision
+
+- Fecha: 12 de abril de 2026

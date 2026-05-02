@@ -1,92 +1,157 @@
-# EcoTech — Documentación del proyecto
+# EcoTech - Documentacion del proyecto
 
-## Descripción
+## Resumen
 
-EcoTech es un sitio web corporativo enfocado en la **gestión de residuos electrónicos (RAEE)**, **reacondicionamiento**, **trazabilidad** y promoción de una **economía circular**. El front está maquetado con **HTML5**, **CSS3** y **Bootstrap 5**; el backend puntual con **PHP** y **MySQL**.
+EcoTech es un proyecto web orientado a la gestion responsable de residuos electronicos (RAEE), el reacondicionamiento de equipos y la promocion de una economia circular. El proyecto combina una capa visual construida con HTML, CSS, Bootstrap y JavaScript, con un backend basico en PHP conectado a MySQL.
 
-## Estructura del proyecto
+La aplicacion hoy funciona como un sitio corporativo con:
 
-```
+- Landing page con presentacion del proyecto, servicios, equipo y formulario visual de comentarios.
+- Paginas informativas para servicios, nosotros, herramientas, contacto, terminos y productos.
+- Flujo de registro y login conectado a base de datos.
+
+## Tecnologias usadas
+
+- PHP
+- MySQL / phpMyAdmin
+- HTML5
+- CSS3
+- Bootstrap 5
+- JavaScript
+- SweetAlert2
+- Bootstrap Icons
+- Font Awesome
+
+## Estructura actual del proyecto
+
+```text
 Ecotech/
-├── html/
-│   ├── index.html              # Inicio: carrusel, nosotros, servicios (cards), equipo, formulario UI
-│   ├── servicios.html          # Servicios detallados (recolección, reacondicionamiento, trazabilidad)
-│   ├── nosotros.html           # Misión, propuesta, impacto, proceso, métricas, CTA
-│   ├── herramientas.html       # Stack: Frontend, Backend, nube (imágenes)
-│   ├── login.html              # Inicio de sesión → php/login.php
-│   ├── Registro.html           # Registro → php/registro.php
-│   ├── contacto.html           # Formulario contacto (ver nota backend abajo)
-│   └── terminos_condiciones.html
-├── css/
-│   ├── style.css               # index.html
-│   ├── servicios.css           # servicios.html (tema oscuro + neón / dinamismo)
-│   ├── nosotros.css            # nosotros.html
-│   ├── herramientas.css        # herramientas.html
-│   ├── Login.css, Registro.css, Contacto.css, terminos_condiciones.css
-├── Js/
-│   └── Valid_checkbox.js       # Validación del checkbox de términos en contacto (cliente)
-├── images/                     # Carrusel, servicios, equipo, herramientas (Fronted, Backend, AWS, etc.)
-├── php/
-│   ├── conexion.php
-│   ├── registro.php
-│   └── login.php
-└── docs/
-    ├── PAGINAS_Y_FLUJO.md
-    └── VALIDACION.md
+|-- css/
+|   |-- Contacto.css
+|   |-- herramientas.css
+|   |-- Login.css
+|   |-- nosotros.css
+|   |-- Registro.css
+|   |-- servicios.css
+|   |-- style.css
+|   `-- terminos_condiciones.css
+|-- docs/
+|   |-- BASE_DE_DATOS.md
+|   |-- PAGINAS_Y_FLUJO.md
+|   `-- VALIDACION.md
+|-- html/
+|   |-- contacto.html
+|   |-- herramientas.html
+|   |-- index.php
+|   |-- login_user.php
+|   |-- nosotros.html
+|   |-- productos.html
+|   |-- registro_user.php
+|   |-- servicios.html
+|   `-- terminos_condiciones.html
+|-- images/
+|   |-- Imagen1.png
+|   |-- Imagen2.png
+|   |-- Imagen3.png
+|   |-- Imagen4.png
+|   |-- Recoleccion.png
+|   |-- Reacondicionamiento.png
+|   |-- Trazabilidad.png
+|   |-- propuesta.png
+|   |-- Impacto.png
+|   |-- AWS.png
+|   |-- Backend.png
+|   |-- Fronted.png
+|   |-- GitHub.png
+|   |-- IA.png
+|   |-- Despliegue.png
+|   |-- Karoline.jpeg
+|   |-- Daniel.jpeg
+|   |-- Yofan.jpeg
+|   `-- Reci.mp4
+|-- Js/
+|   |-- alertas.js
+|   `-- Valid_checkbox.js
+|-- php/
+|   |-- conexion.php
+|   |-- login.php
+|   `-- registro.php
+`-- README.md
 ```
 
-## Identidad visual
+## Paginas principales
 
-- **Fondo principal**: `#161816`
-- **Verdes**: `#2ECC71`, `#39FF14`, sombras neón `#00ff99` (efecto retroiluminado en logo y enlaces con clase `.texto-efecto` / `.logo` donde aplica)
-- **Iconografía**: Bootstrap Icons (`index.html`, páginas con tema EcoTech unificado) y Font Awesome en login, registro y contacto
+| Ruta | Rol |
+|---|---|
+| `html/index.php` | Landing principal del proyecto |
+| `html/servicios.html` | Descripcion extendida de servicios |
+| `html/nosotros.html` | Presentacion, impacto, proceso y CTA |
+| `html/herramientas.html` | Stack tecnico y herramientas del equipo |
+| `html/contacto.html` | Formulario de contacto con validacion de terminos |
+| `html/terminos_condiciones.html` | Contenido legal para el formulario |
+| `html/login_user.php` | Inicio de sesion |
+| `html/registro_user.php` | Registro de usuarios |
+| `html/productos.html` | Pagina creada pero aun incompleta |
 
-## Páginas principales
+## Backend disponible
 
-| Página        | Archivo              | CSS principal        |
-|---------------|----------------------|----------------------|
-| Inicio        | `html/index.html`    | `css/style.css`      |
-| Servicios     | `html/servicios.html`| `css/servicios.css`  |
-| Nosotros      | `html/nosotros.html` | `css/nosotros.css`   |
-| Herramientas  | `html/herramientas.html` | `css/herramientas.css` |
-| Login / Registro | `login.html`, `Registro.html` | `Login.css`, `Registro.css` |
-| Contacto      | `html/contacto.html` | `Contacto.css`       |
-| Términos      | `html/terminos_condiciones.html` | `terminos_condiciones.css` |
+| Archivo | Funcion actual |
+|---|---|
+| `php/conexion.php` | Conexion `mysqli` a la base de datos `ecotech` |
+| `php/registro.php` | Registra usuarios en la tabla `usuarios` usando `password_hash` |
+| `php/login.php` | Valida credenciales con `password_verify` y redirige con estados en query string |
 
-## JavaScript
+## JavaScript disponible
 
-- **Bootstrap Bundle** (CDN) en las páginas que lo incluyen (navbar colapsable, etc.).
-- **`Js/Valid_checkbox.js`**: en `contacto.html` obliga a marcar términos antes de enviar y usa la API de validación HTML5 (`setCustomValidity`).
+| Archivo | Funcion actual |
+|---|---|
+| `Js/alertas.js` | Muestra alertas visuales de login y registro con SweetAlert2 |
+| `Js/Valid_checkbox.js` | Obliga a aceptar terminos antes de enviar el formulario de contacto |
 
-## Backend PHP
+## Como ejecutar el proyecto en local
 
-- **`php/conexion.php`**: conexión MySQL.
-- **`php/registro.php`**: procesa registro (y hoy también recibe POST de `contacto.html` — **recomendado** separar en `contacto.php` o cambiar `action` del formulario).
-- **`php/login.php`**: login; conviene unificar con contraseñas hasheadas (`password_verify`).
+1. Coloca el proyecto dentro de `htdocs` de XAMPP.
+2. Inicia Apache y MySQL desde el panel de XAMPP.
+3. Crea una base de datos llamada `ecotech`.
+4. Crea la tabla `usuarios` con las columnas esperadas por el backend.
+5. Abre en el navegador la ruta `http://localhost/Ecotech/html/index.php`.
 
-Detalle de pendientes técnicos: **`docs/VALIDACION.md`**.
+La conexion actual esta definida en `php/conexion.php` con estos valores:
 
-## Imágenes usadas (referencia)
+- Servidor: `localhost`
+- Usuario: `root`
+- Contrasena: vacia
+- Base de datos: `ecotech`
 
-- Carrusel: `Imagen1.png` … (según `index.html`)
-- Servicios en landing: `Recoleccion.png`, `Reacondicionamiento.png`, `Trazabilidad.png`
-- Herramientas: `Fronted.png`, `Backend.png`, `AWS.png`
-- Nosotros: `propuesta.png`, `Impacto.png`, etc. (según `nosotros.html`)
+La estructura minima esperada para la autenticacion esta documentada en [docs/BASE_DE_DATOS.md](/D:/Xampp/Xampp/htdocs/Ecotech/docs/BASE_DE_DATOS.md).
 
-## Navegación y enlaces
+## Estado actual del proyecto
 
-- El menú **no es idéntico en todas las páginas**; conviene unificarlo (ver `docs/PAGINAS_Y_FLUJO.md`).
-- Algunos botones del landing pueden seguir con `href="#"` (revisar “Más información”).
+Lo que ya esta funcionando:
 
-## Próximos pasos sugeridos
+- Landing page y paginas informativas maquetadas.
+- Estilos visuales coherentes con identidad EcoTech.
+- Registro de usuarios con hash seguro.
+- Login con validacion de password hasheado.
+- Alertas visuales para flujos de autenticacion.
+- Validacion del checkbox de terminos en contacto.
 
-1. Endpoint dedicado para **contacto** y `action` coherente en el formulario.
-2. **Login** con `password_verify` alineado a `password_hash` del registro.
-3. Unificar **Bootstrap** (versión e íconos) o documentar la mezcla a propósito.
-4. `lang="es"` en todas las páginas con contenido en español.
-5. SEO: `meta description`, favicon, títulos por página.
+Pendientes importantes detectados en el codigo actual:
 
----
+- Varias paginas siguen enlazando a `index.html`, pero la entrada real del proyecto es `index.php`.
+- `contacto.html` envia el formulario a `php/registro.php`, lo que no corresponde con un flujo de contacto.
+- `productos.html` referencia `login.html`, que no existe.
+- `productos.html` apunta a `.. /css/productos.css`, pero ese archivo no existe y la ruta tiene un espacio.
+- Algunas paginas tienen `lang="en"` aunque el contenido esta en espanol.
+- Se mezclan versiones de Bootstrap `5.3.2` y `5.3.8`.
 
-**Última actualización:** 29 de marzo de 2026  
-**Estado:** En desarrollo — documentación alineada al árbol actual de archivos.
+## Documentacion adicional
+
+- [Paginas y flujo](/D:/Xampp/Xampp/htdocs/Ecotech/docs/PAGINAS_Y_FLUJO.md)
+- [Validacion y estado tecnico](/D:/Xampp/Xampp/htdocs/Ecotech/docs/VALIDACION.md)
+- [Base de datos](/D:/Xampp/Xampp/htdocs/Ecotech/docs/BASE_DE_DATOS.md)
+
+## Ultima revision
+
+- Fecha: 12 de abril de 2026
+- Estado: documentacion actualizada segun la estructura real del repositorio

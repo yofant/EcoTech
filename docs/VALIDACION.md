@@ -1,68 +1,93 @@
-# Validación y estado técnico — EcoTech
+# Validacion y estado tecnico
 
-## Inventario de páginas (`html/`)
+## Resumen
 
-| Archivo | Contenido resumido |
-|---------|-------------------|
-| `index.html` | Landing: navbar, carrusel, secciones, equipo, formulario UI, footer |
-| `servicios.html` | Servicios extendidos + imágenes |
-| `nosotros.html` | Historia, misión, impacto, proceso, métricas, CTA |
-| `herramientas.html` | Stack tecnológico (Frontend / Backend / Nube) |
-| `login.html` | Login → `php/login.php` |
-| `Registro.html` | Registro → `php/registro.php` |
-| `contacto.html` | Formulario contacto; script términos |
-| `terminos_condiciones.html` | Texto legal |
+Esta revision se hizo comparando la documentacion existente contra los archivos reales del proyecto en `html/`, `php/`, `Js/`, `css/` e `images/`.
 
-**Nota:** Las páginas `servicios.html`, `nosotros.html` y `herramientas.html` **existen** y están enlazadas desde distintas partes del sitio; el menú entre páginas puede no ser idéntico (ver `PAGINAS_Y_FLUJO.md`).
+El objetivo de este documento es dejar claro que ya funciona, que esta incompleto y que puntos tecnicos conviene corregir antes de una entrega o despliegue.
 
----
+## Hallazgos confirmados
 
-## Lo que está en buen estado (UI)
+### En buen estado
 
-- Maquetación responsive con Bootstrap.
-- Tema oscuro + acentos verdes y efectos neón reutilizados en varias hojas (`servicios`, `nosotros`, `herramientas`, etc.).
-- **Contacto — cliente:** `Js/Valid_checkbox.js` valida el checkbox de términos antes de enviar y muestra mensaje si falta marcar.
+- `php/registro.php` registra usuarios usando `password_hash`.
+- `php/login.php` valida credenciales con `password_verify`.
+- `Js/alertas.js` centraliza estados de login y registro con SweetAlert2.
+- `Js/Valid_checkbox.js` valida el checkbox de terminos en el formulario de contacto.
+- La estructura general del frontend esta organizada por pagina y por hoja de estilos.
 
----
+### Inconsistencias funcionales
 
-## Pendientes importantes (backend y coherencia)
+- `html/contacto.html` envia el formulario a `../php/registro.php`.
+- `php/registro.php` espera `nombre`, `primer_apellido`, `segundo_apellido`, `correo`, `contrasena` y `rol`.
+- `html/contacto.html` solo envia `nombre`, `primer_apellido` y `correo`.
+- Resultado: el flujo de contacto no coincide con el backend y no representa una funcionalidad terminada.
 
-### Críticos para datos y seguridad
+### Inconsistencias de rutas
 
-1. **Contacto → PHP**  
-   `contacto.html` sigue enviando a `php/registro.php`. Lo correcto es un handler dedicado (p. ej. `php/contacto.php`) que guarde o envíe mensajes sin mezclar con registro de usuarios.
+- La entrada real del proyecto es `html/index.php`, pero varias paginas siguen enlazando a `index.html`.
+- `html/registro_user.php` enlaza a `login.html`, pero el archivo valido es `login_user.php`.
+- `html/productos.html` enlaza a `login.html`, que no existe.
+- `html/herramientas.html` tiene un boton de retorno a `index.html` en lugar de `index.php`.
 
-2. **Login y contraseñas**  
-   Si el registro usa `password_hash`, el login debe usar `password_verify()`. Evitar comparar la contraseña en claro con el hash en base de datos.
+### Inconsistencias de recursos
 
-3. **Credenciales**  
-   No subir credenciales reales en `conexion.php` en repositorios públicos; usar variables de entorno en despliegne.
+- `html/productos.html` intenta cargar `.. /css/productos.css`.
+- No existe `css/productos.css` en el proyecto.
+- La ruta contiene un espacio entre `..` y `/css`, por lo que aun existiendo el archivo la referencia seguiria mal formada.
 
-### Calidad y mantenimiento
+### Inconsistencias de idioma y metadatos
 
-4. **`lang` del documento**  
-   Varias páginas tienen `lang="en"` con texto en español; conviene `lang="es"`.
+- `index.php` y `servicios.html` usan `lang="es"`.
+- `contacto.html`, `herramientas.html`, `login_user.php`, `nosotros.html`, `productos.html`, `registro_user.php` y `terminos_condiciones.html` usan `lang="en"` con contenido en espanol.
 
-5. **Versiones CDN**  
-   Mezcla Bootstrap 5.3.8 (index) y 5.3.2 (algunos formularios). Unificar o documentar la decisión.
+### Dependencias frontend
 
-6. **Accesibilidad**  
-   Revisar `alt` en todas las imágenes, orden de encabezados, contraste y foco en teclado.
+- `index.php`, `servicios.html`, `nosotros.html` y `herramientas.html` usan Bootstrap `5.3.8`.
+- `contacto.html`, `login_user.php`, `registro_user.php` y `terminos_condiciones.html` usan Bootstrap `5.3.2`.
+- El proyecto mezcla Bootstrap Icons y Font Awesome segun la pagina.
 
-7. **SEO**  
-   `meta description`, favicon, títulos descriptivos por página.
+## Riesgos actuales
 
----
+### Riesgo alto
 
-## Checklist rápido antes de entregar
+- El formulario de contacto no tiene backend propio.
+- Las rutas rotas (`index.html`, `login.html`) pueden cortar la navegacion.
+- `productos.html` da imagen de pagina incompleta si se expone en menu.
 
-- [ ] Formulario de contacto con `action` y PHP acordes al alcance del trabajo.
-- [ ] Login alineado con hash del registro.
-- [ ] Menú coherente en todas las páginas (mismos enlaces donde aplique).
-- [ ] `lang="es"` donde el contenido es español.
-- [ ] Prueba en móvil / tablet / escritorio.
-- [ ] Validador W3C HTML (muestras por página principal).
+### Riesgo medio
 
----
+- Las credenciales de base de datos estan hardcodeadas en `php/conexion.php`.
+- No existe en el repositorio un archivo SQL con el esquema de la base de datos.
+- Hay dependencias CDN externas, por lo que el proyecto depende de conexion a internet para estilos, iconos y alertas.
 
-**Última revisión:** 29 de marzo de 2026
+### Riesgo bajo
+
+- El formulario de comentarios dentro de `index.php` es solo visual.
+- Algunas paginas no comparten el mismo navbar ni el mismo orden de enlaces.
+
+## Recomendaciones prioritarias
+
+1. Crear un `php/contacto.php` o ajustar el `action` del formulario de contacto segun el alcance real.
+2. Corregir todas las referencias a `index.html` y `login.html`.
+3. Definir si `productos.html` se completara o se sacara temporalmente del menu.
+4. Unificar `lang="es"` en las vistas con contenido en espanol.
+5. Estandarizar la version de Bootstrap usada en todas las paginas.
+6. Mover la configuracion sensible de `php/conexion.php` a una estrategia mas segura para despliegue.
+7. Mantener documentada la estructura minima de base de datos en `docs/BASE_DE_DATOS.md`.
+
+## Checklist rapido
+
+- [x] Registro con password hash
+- [x] Login con password verify
+- [x] Validacion cliente para terminos
+- [ ] Flujo de contacto funcional
+- [ ] Navegacion sin rutas rotas
+- [ ] Pagina de productos terminada
+- [ ] Idioma unificado en todas las vistas
+- [ ] Esquema SQL incluido en el repositorio
+
+## Ultima revision
+
+- Fecha: 12 de abril de 2026
+- Estado: actualizado segun el codigo actual del proyecto

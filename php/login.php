@@ -1,12 +1,11 @@
 <?php
-include("conexion.php");
+session_start();
 
-$status = "";
+include("conexion.php");
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST['correo']) && isset($_POST['contrasena'])) {
-
-        $correo     = $_POST['correo'];
+        $correo = $_POST['correo'];
         $contrasena = $_POST['contrasena'];
 
         $sql = "SELECT * FROM usuarios WHERE correo = ?";
@@ -19,24 +18,33 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $usuario = $result->fetch_assoc();
 
             if (password_verify($contrasena, $usuario['contrasena'])) {
-            header("Location: ../html/login_user.php?status=success");
-            exit();
-    
-            } else {
-                header("Location: ../html/login_user.php?status=error_pass");
+                $_SESSION['usuario'] = [
+                    'nombre' => $usuario['nombre'] ?? '',
+                    'correo' => $usuario['correo'] ?? '',
+                    'rol' => $usuario['rol'] ?? ''
+                ];
+
+                if (($usuario['rol'] ?? '') === 'admin') {
+                    header("Location: ../html/admin_panel.php");
+                    exit();
+                }
+
+                header("Location: ../html/index.php");
                 exit();
             }
 
-        } else {
-            header("Location: ../html/login_user.php?status=error_user");
+            header("Location: ../html/login_user.php?status=error_pass");
             exit();
-
         }
 
-    } else {
-        header("Location: ../html/login_user.php?status=error_data");
+        header("Location: ../html/login_user.php?status=error_user");
         exit();
     }
+
+    header("Location: ../html/login_user.php?status=error_data");
+    exit();
 }
 
+header("Location: ../html/login_user.php");
+exit();
 ?>

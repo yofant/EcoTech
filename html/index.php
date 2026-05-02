@@ -28,7 +28,7 @@
     <!-- Barra de navegación fija en la parte superior -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
       <div class="container">
-        <a href="index.html" class="navbar-brand logo"
+        <a href="index.php" class="navbar-brand logo"
           ><span class="text-success">Eco</span>Tech</a
         >
         <!-- Botón adaptable para menú responsive -->

@@ -56,4 +56,28 @@ function mostrarAlerta(status) {
             icon: "warning"
         });
     }
+
+    if (status === "admin_only") {
+        Swal.fire({
+            title: "Acceso restringido",
+            text: "Solo los administradores pueden entrar al panel.",
+            icon: "warning"
+        });
+    }
+
+    if (status === "session_expired") {
+        Swal.fire({
+            title: "Inicia sesion",
+            text: "Tu sesion no esta activa o ya expiro.",
+            icon: "info"
+        });
+    }
+
+    if (status === "logout") {
+        Swal.fire({
+            title: "Sesion cerrada",
+            text: "Has salido del panel correctamente.",
+            icon: "success"
+        });
+    }
 }
