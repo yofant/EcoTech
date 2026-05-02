@@ -15,6 +15,10 @@ El objetivo de este documento es dejar claro que ya funciona, que esta incomplet
 - `Js/alertas.js` centraliza estados de login y registro con SweetAlert2.
 - `Js/Valid_checkbox.js` valida el checkbox de terminos en el formulario de contacto.
 - La estructura general del frontend esta organizada por pagina y por hoja de estilos.
+- Panel `html/admin_panel.php` con sesion y rol admin, modulos PHP separados por dominio (usuarios, empresas, estados, acciones, datos de graficos).
+- Grafico de ubicaciones en el resumen admin: el dataset de Chart.js incluye la propiedad `data` con los totales por etiqueta.
+- Grafico de estados en el resumen admin: la consulta agrupa y etiqueta por `nombre_estado`, no por `id_estado`, para que el eje muestre nombres legibles (por ejemplo, "Baja").
+- Modulo de empresas en el admin: formularios con `id` unicos en campos (`empresa_*`) para no colisionar con el formulario de usuarios; mensajes CRUD separados (`$crudEmpresaMessage`).
 
 ### Inconsistencias funcionales
 
@@ -89,5 +93,5 @@ El objetivo de este documento es dejar claro que ya funciona, que esta incomplet
 
 ## Ultima revision
 
-- Fecha: 12 de abril de 2026
-- Estado: actualizado segun el codigo actual del proyecto
+- Fecha: 1 de mayo de 2026
+- Estado: incorporadas notas del panel de administracion, graficos y empresas.

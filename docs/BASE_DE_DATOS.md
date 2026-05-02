@@ -9,6 +9,7 @@ Este documento describe esa estructura inferida a partir de:
 - `php/conexion.php`
 - `php/registro.php`
 - `php/login.php`
+- Modulos del panel admin (`php/admin_*.php`) y listados en `php/admin_acciones.php`
 
 ## Configuracion esperada
 
@@ -33,6 +34,24 @@ Segun `php/registro.php`, la tabla `usuarios` debe aceptar estos campos:
 | `contrasena` | `VARCHAR(255)` | Hash generado por `password_hash` |
 | `rol` | `VARCHAR(50)` | Rol como `admin`, `cliente` u `operador` |
 
+En el panel de administracion del repositorio actual las consultas usan `id_usuario` como clave primaria de `usuarios` (alias `id` en listados). Si tu tabla aun usa `id`, alineala con el codigo o adapta los `SELECT`/`WHERE` en `php/admin_usuarios.php` y `php/login.php`.
+
+## Tabla usada en el admin: `empresas`
+
+Gestionada desde `php/admin_empresas.php`. Columnas esperadas:
+
+| Columna | Tipo sugerido | Uso |
+|---|---|---|
+| `id_empresa` | `INT` autoincremental | Identificador |
+| `nombre` | `VARCHAR(200)` | Nombre comercial (tambien usado en joins como `em.nombre` en activos) |
+| `nit` | `VARCHAR(32)` | Identificacion fiscal; conviene `UNIQUE` si la regla de negocio lo exige |
+| `direccion` | `VARCHAR(255)` | Direccion |
+| `telefono` | `VARCHAR(40)` | Telefono de contacto |
+| `correo_contacto` | `VARCHAR(120)` | Correo de contacto |
+| `fecha_registro` | `DATETIME` | Fecha de alta; el alta desde el panel puede fijar `NOW()` si el campo se deja vacio |
+
+La eliminacion puede fallar por integridad referencial si existen filas en `activos` con `id_empresa` apuntando a la empresa.
+
 ## SQL sugerido
 
 ```sql
@@ -48,6 +67,21 @@ CREATE TABLE IF NOT EXISTS usuarios (
     contrasena VARCHAR(255) NOT NULL,
     rol VARCHAR(50) NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+```
+
+Ejemplo de creacion de `empresas` alineado con `php/admin_empresas.php`:
+
+```sql
+CREATE TABLE IF NOT EXISTS empresas (
+    id_empresa INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(200) NOT NULL,
+    nit VARCHAR(32) NOT NULL,
+    direccion VARCHAR(255) NULL,
+    telefono VARCHAR(40) NULL,
+    correo_contacto VARCHAR(120) NOT NULL,
+    fecha_registro DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    UNIQUE KEY uq_empresas_nit (nit)
 );
 ```
 
@@ -84,5 +118,5 @@ Despues compara la contrasena enviada con el hash almacenado usando `password_ve
 
 ## Ultima revision
 
-- Fecha: 12 de abril de 2026
-- Estado: documentacion inferida desde el codigo actual
+- Fecha: 1 de mayo de 2026
+- Estado: documentada la tabla `empresas`, ejemplo SQL y nota sobre `id_usuario` en el admin.

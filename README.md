@@ -9,6 +9,7 @@ La aplicacion hoy funciona como un sitio corporativo con:
 - Landing page con presentacion del proyecto, servicios, equipo y formulario visual de comentarios.
 - Paginas informativas para servicios, nosotros, herramientas, contacto, terminos y productos.
 - Flujo de registro y login conectado a base de datos.
+- Panel de administracion (`html/admin_panel.php`) reservado a usuarios con rol `admin`: resumen con graficos (Chart.js), gestion de usuarios, empresas aliadas, acciones administrativas (reportes, listados) y estados de equipos.
 
 ## Tecnologias usadas
 
@@ -21,12 +22,14 @@ La aplicacion hoy funciona como un sitio corporativo con:
 - SweetAlert2
 - Bootstrap Icons
 - Font Awesome
+- Chart.js (panel de administracion, CDN)
 
 ## Estructura actual del proyecto
 
 ```text
 Ecotech/
 |-- css/
+|   |-- admin.css
 |   |-- Contacto.css
 |   |-- herramientas.css
 |   |-- Login.css
@@ -40,6 +43,7 @@ Ecotech/
 |   |-- PAGINAS_Y_FLUJO.md
 |   `-- VALIDACION.md
 |-- html/
+|   |-- admin_panel.php
 |   |-- contacto.html
 |   |-- herramientas.html
 |   |-- index.php
@@ -70,9 +74,17 @@ Ecotech/
 |   |-- Yofan.jpeg
 |   `-- Reci.mp4
 |-- Js/
+|   |-- admin_panel.js
+|   |-- admin_panel_cantidad_*.js
 |   |-- alertas.js
 |   `-- Valid_checkbox.js
 |-- php/
+|   |-- admin_acciones.php
+|   |-- admin_chart_*.php
+|   |-- admin_dashboard_data.php
+|   |-- admin_empresas.php
+|   |-- admin_estados.php
+|   |-- admin_usuarios.php
 |   |-- conexion.php
 |   |-- login.php
 |   `-- registro.php
@@ -92,6 +104,7 @@ Ecotech/
 | `html/login_user.php` | Inicio de sesion |
 | `html/registro_user.php` | Registro de usuarios |
 | `html/productos.html` | Pagina creada pero aun incompleta |
+| `html/admin_panel.php` | Panel admin: metricas, graficos, usuarios, empresas, acciones, estados |
 
 ## Backend disponible
 
@@ -100,6 +113,12 @@ Ecotech/
 | `php/conexion.php` | Conexion `mysqli` a la base de datos `ecotech` |
 | `php/registro.php` | Registra usuarios en la tabla `usuarios` usando `password_hash` |
 | `php/login.php` | Valida credenciales con `password_verify` y redirige con estados en query string |
+| `php/admin_usuarios.php` | CRUD de usuarios para el panel admin |
+| `php/admin_empresas.php` | CRUD de empresas aliadas para el panel admin |
+| `php/admin_estados.php` | CRUD de estados de equipos para el panel admin |
+| `php/admin_acciones.php` | Reportes, metricas y listados del panel de acciones |
+| `php/admin_dashboard_data.php` | Agrega datos para graficos del resumen |
+| `php/admin_chart_*.php` | Consultas por grafico (equipos, ubicaciones, estados, usuarios) |
 
 ## JavaScript disponible
 
@@ -107,6 +126,8 @@ Ecotech/
 |---|---|
 | `Js/alertas.js` | Muestra alertas visuales de login y registro con SweetAlert2 |
 | `Js/Valid_checkbox.js` | Obliga a aceptar terminos antes de enviar el formulario de contacto |
+| `Js/admin_panel.js` | Navegacion entre secciones del panel y confirmacion de borrado |
+| `Js/admin_panel_cantidad_*.js` | Inicializa graficos Chart.js del resumen admin |
 
 ## Como ejecutar el proyecto en local
 
@@ -135,6 +156,7 @@ Lo que ya esta funcionando:
 - Login con validacion de password hasheado.
 - Alertas visuales para flujos de autenticacion.
 - Validacion del checkbox de terminos en contacto.
+- Panel de administracion con graficos de resumen, gestion de usuarios, empresas, reportes y estados.
 
 Pendientes importantes detectados en el codigo actual:
 
@@ -147,11 +169,11 @@ Pendientes importantes detectados en el codigo actual:
 
 ## Documentacion adicional
 
-- [Paginas y flujo](/D:/Xampp/Xampp/htdocs/Ecotech/docs/PAGINAS_Y_FLUJO.md)
-- [Validacion y estado tecnico](/D:/Xampp/Xampp/htdocs/Ecotech/docs/VALIDACION.md)
-- [Base de datos](/D:/Xampp/Xampp/htdocs/Ecotech/docs/BASE_DE_DATOS.md)
+- [Paginas y flujo](docs/PAGINAS_Y_FLUJO.md)
+- [Validacion y estado tecnico](docs/VALIDACION.md)
+- [Base de datos](docs/BASE_DE_DATOS.md)
 
 ## Ultima revision
 
-- Fecha: 12 de abril de 2026
-- Estado: documentacion actualizada segun la estructura real del repositorio
+- Fecha: 1 de mayo de 2026
+- Estado: documentacion alineada con el panel de administracion, modulo de empresas y graficos del resumen.

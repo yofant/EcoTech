@@ -91,6 +91,18 @@ Aunque varias vistas enlazan al logo o al menu usando `index.html`, en el reposi
 - Intenta cargar `.. /css/productos.css`, pero ese archivo no existe y la ruta contiene un espacio.
 - Actualmente tiene `lang="en"`.
 
+### `admin_panel.php`
+
+- Panel de administracion accesible solo si la sesion existe y el rol del usuario es `admin` (comprobacion en PHP al inicio del archivo).
+- Incluye `../php/conexion.php` y modulos en `../php/admin_usuarios.php`, `../php/admin_empresas.php`, `../php/admin_estados.php`, `../php/admin_acciones.php` y `../php/admin_dashboard_data.php`.
+- Navegacion lateral con secciones enlazadas por hash y parametro `?panel=`: `resumen`, `usuarios`, `empresas`, `acciones`, `estado`. El script `../Js/admin_panel.js` sincroniza la URL al cambiar de seccion.
+- **Resumen:** tarjetas metricas y cuadros con graficos Chart.js (equipos, ubicaciones, estados, usuarios). Los datos se exponen en `window.ADMIN_CHART_DATA` generado desde PHP.
+- **Usuarios:** formulario y tabla para crear, editar y eliminar usuarios (`admin_usuarios.php`).
+- **Empresas:** formulario y tabla para empresas aliadas: `nombre`, `nit`, `direccion`, `telefono`, `correo_contacto`, `fecha_registro` (alta opcional; si se omite, se usa fecha/hora actual). `id_empresa` es autonumerico. Logica en `admin_empresas.php` con acciones `empresa_crud_action=save_empresa`, `empresa_action=edit` y `empresa_action=delete`.
+- **Acciones:** generacion de reportes y vistas resumidas de activos e historial (`admin_acciones.php`).
+- **Estado:** CRUD de estados de equipos (`admin_estados.php`).
+- Estilos en `../css/admin.css`; Chart.js se carga por CDN al final de la pagina.
+
 ## Flujo actual de autenticacion
 
 ### Registro
@@ -140,4 +152,5 @@ El sitio no usa un menu unico en todas las paginas. El contenido actual muestra 
 
 ## Ultima revision
 
-- Fecha: 12 de abril de 2026
+- Fecha: 1 de mayo de 2026
+- Cambios: documentado el panel de administracion y el flujo del modulo de empresas.
