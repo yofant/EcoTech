@@ -22,6 +22,8 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css"
     />
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   </head>
 
   <body>
@@ -59,7 +61,7 @@
               <a class="nav-link texto-efecto" href="productos.html">Productos</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link texto-efecto" href="contacto.html">Contacto</a>
+              <a class="nav-link texto-efecto" href="contacto.php">Contacto</a>
             </li>
             <li class="nav-item">
               <a class="nav-link texto-efecto" href="nosotros.html">Nosotros</a>
@@ -193,7 +195,7 @@
               </p>
 
               <div class="text-center">
-                <a href="#" class="btn btn-success">Más información</a>
+                <a href="nosotros.html" class="btn btn-success">Más información</a>
               </div>
             </div>
           </div>
@@ -263,7 +265,7 @@
                   facilitando el acceso a tecnología reacondicionada de calidad
                   a un menor costo.
                 </p>
-                <button class="btn bg-success">Más información</button>
+                <button onclick="window.location.href='contacto.html'" class="btn bg-success">Más información</button>
               </div>
             </div>
           </div>
@@ -285,7 +287,7 @@
                   proceso, brindando a nuestros usuarios información clara sobre
                   el manejo y aprovechamiento de sus equipos tecnológicos.
                 </p>
-                <button class="btn bg-success">Más información</button>
+                <button type="button" onclick="window.location.href='contacto.html'" class="btn bg-success">Más información</button>
               </div>
             </div>
           </div>
@@ -399,54 +401,53 @@
     </section>
 
     <section class="contact section-padding">
-      <div class="container mt-5 mb-5">
+        <div class="container mt-5 mb-5">
         <div class="row">
           <div class="col-md-12">
             <div class="section-header text-center text-white pb-5">
               <h2>Comentarios y sugerencias</h2>
-              <p>
-                Tu opinión es muy valiosa para nosotros. Comparte aquí tus
-                ideas, recomendaciones o inquietudes; nos ayudan a mejorar
-                continuamente y ofrecerte un mejor servicio.
-              </p>
             </div>
           </div>
         </div>
+      <div class="container mt-5 mb-5">
+        <form action="../php/smtp.php" method="POST" class="bg-dark p-4">
+  <div class="mb-3">
+    <input
+      type="text"
+      name="nombre"
+      class="form-control"
+      placeholder="Nombre completo"
+      required
+    />
+  </div>
 
-        <div class="row justify-content-center">
-          <div class="col-md-8 col-lg-6">
-            <form action="#" class="bg-dark p-4">
-              <div class="mb-3">
-                <input
-                  type="text"
-                  class="form-control"
-                  placeholder="Nombre completo"
-                  required
-                />
-              </div>
-              <div class="mb-3">
-                <input
-                  type="email"
-                  class="form-control"
-                  placeholder="Email"
-                  required
-                />
-              </div>
-              <div class="mb-3">
-                <textarea
-                  class="form-control"
-                  rows="3"
-                  placeholder="Mensaje"
-                  required
-                ></textarea>
-              </div>
-              <div class="d-grid">
-                <button class="btn btn-success btn-lg" type="submit">
-                  Enviar
-                </button>
-              </div>
-            </form>
-          </div>
+  <div class="mb-3">
+    <input
+      type="email"
+      name="email"
+      class="form-control"
+      placeholder="Email"
+      required
+    />
+  </div>
+
+  <div class="mb-3">
+    <textarea
+      name="mensaje"
+      class="form-control"
+      rows="3"
+      placeholder="Mensaje"
+      required
+    ></textarea>
+  </div>
+
+  <div class="d-grid">
+    <button class="btn btn-success btn-lg" type="submit">
+      Enviar
+    </button>
+  </div>
+</form>
+        
         </div>
       </div>
     </section>
@@ -460,11 +461,23 @@
     </footer>
 
     <!-- CDN de Bootstrap JavaScript para funcionalidad interactiva -->
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
-      crossorigin="anonymous"
-    ></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
+
+        <script src="../Js/alertas.js"></script>
+
+        <script>
+            // Obtener el parámetro status de la URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const status = urlParams.get('status');
+
+            // Si hay un valor status, mostrar la alerta correspondiente
+            if (status) {
+                mostrarAlerta(status);
+            }
+        </script>
 
   </body>
 </html>

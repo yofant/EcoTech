@@ -1,5 +1,5 @@
 <?php
-$servername = "localhost";
+$servername = "localhost";   // Servidor MySQL
 $username   = "root";       // Usuario MySQL
 $password   = "";           // Contraseña MySQL
 $database   = "ecotech";    // Nombre de la base

@@ -1,0 +1,80 @@
+<?php
+
+
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+
+
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
+ob_start();
+
+require __DIR__ . '/../vendor/autoload.php';
+
+// Logging para validar recepción de datos
+file_put_contents(__DIR__ . '/contacto_log.txt', date('Y-m-d H:i:s') . ' - Datos recibidos: ' . print_r($_POST, true) . "\n", FILE_APPEND);
+
+function ecotech_redirect_to_contacto(string $query): void
+{
+    $scheme = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? 'https' : 'http';
+    $host   = $_SERVER['HTTP_HOST'] ?? 'localhost';
+    $script = $_SERVER['SCRIPT_NAME'] ?? '/php/smtp_contacto.php';
+    $base   = rtrim(str_replace('\\', '/', dirname(dirname($script))), '/');
+    if ($base === '/' || $base === '') {
+        $base = '';
+    }
+    $path = ($base === '' ? '' : $base) . '/html/contacto.php' . $query;
+    header('Location: ' . $scheme . '://' . $host . $path, true, 303);
+}
+
+// Validar que el formulario se haya enviado correctamente
+if (empty($_POST['nombre']) || empty($_POST['primer_apellido']) || empty($_POST['email']) || empty($_POST['mensaje'])) {
+    ob_end_clean();
+    ecotech_redirect_to_contacto('?status=incomplete');
+    exit();
+}
+
+$nombre_completo = trim($_POST['nombre']) . ' ' . trim($_POST['primer_apellido']);
+$email   = trim($_POST['email']);
+$mensaje = trim($_POST['mensaje']);
+
+if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+    ob_end_clean();
+    ecotech_redirect_to_contacto('?status=invalid_email');
+    exit();
+}
+
+$mail = new PHPMailer(true);
+
+try {
+    $mail->isSMTP();
+    $mail->Host       = 'email-smtp.us-east-2.amazonaws.com';
+    $mail->SMTPAuth   = true;
+    $mail->Username   = 'AKIA52ZYEPYVA4PUWUA4';
+    $mail->Password   = 'BG/WqQkO9SPh5I1njS8Y5FbSHf2ASj2VHnPxjVJnARex';
+    $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+    $mail->Port       = 587;
+
+    $mail->setFrom('yofan.tellez@cun.edu.co', 'Formulario de Contacto');
+    $mail->addAddress('yofan.tellez@cun.edu.co');
+
+    $mail->isHTML(true);
+    $mail->Subject = 'Nuevo mensaje desde formulario de contacto - Ecotech WEB';
+    $mail->Body    = "
+        <h3>Nuevo mensaje desde formulario de contacto</h3>
+        <p><strong>Nombre Completo:</strong> " . htmlspecialchars($nombre_completo, ENT_QUOTES | ENT_HTML5, 'UTF-8') . "</p>
+        <p><strong>Email:</strong> " . htmlspecialchars($email, ENT_QUOTES | ENT_HTML5, 'UTF-8') . "</p>
+        <p><strong>Mensaje:</strong><br>" . nl2br(htmlspecialchars($mensaje, ENT_QUOTES | ENT_HTML5, 'UTF-8')) . "</p>
+    ";
+
+    $mail->send();
+    ob_end_clean();
+    ecotech_redirect_to_contacto('?status=contact_sent');
+    exit();
+} catch (Throwable $e) {
+    ob_end_clean();
+    ecotech_redirect_to_contacto('?status=contact_error');
+    exit();
+}

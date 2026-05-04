@@ -20,7 +20,7 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
         <div class="container">
-            <a href="index.html" class="navbar-brand logo"><span class="text-success">Eco</span>Tech</a>
+            <a href="index.php" class="navbar-brand logo"><span class="text-success">Eco</span>Tech</a>
             <!-- Botón adaptable para menú responsive -->
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarS"
                 aria-controls="navbarS" aria-expanded="false" aria-label="Toggle navigation">
@@ -46,7 +46,7 @@
 
     <div class="card-box">
         <h3>Contactanos</h3>
-        <form method="POST" action="../php/registro.php" id="formulario">
+        <form method="POST" action="../php/smtp_contacto.php" id="formulario">
             <div class="mb-3">
                 <label class="form-label">Nombre Completo</label>
                 <div class="input-group">
@@ -67,8 +67,13 @@
                 <label class="form-label">Correo Electrónico</label>
                 <div class="input-group">
                     <span class="input-group-text"><i class="fas fa-envelope"></i></span>
-                    <input name="correo" type="email" class="form-control" placeholder="correo electronico" required />
+                    <input name="email" type="email" class="form-control" placeholder="correo electronico" required />
                 </div>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Mensaje</label>
+                <textarea name="mensaje" class="form-control" rows="4" placeholder="Escribe tu mensaje aquí" required></textarea>
             </div>
 
             <button type="submit" class="btn-main">Enviar Informacion</button>
@@ -82,9 +87,23 @@
         <script src="../Js/Valid_checkbox.js"></script>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
         crossorigin="anonymous"></script>
+
+        <script src="../Js/alertas.js"></script>
+
+        <script>
+            // Obtener el parámetro status de la URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const status = urlParams.get('status');
+
+            // Si hay un valor status, mostrar la alerta correspondiente
+            if (status) {
+                mostrarAlerta(status);
+            }
+        </script>
+
 
     
 </body>
