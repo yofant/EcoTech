@@ -20,7 +20,7 @@ if (
     $hash = password_hash($contrasena, PASSWORD_DEFAULT);
 
     // Consulta para insertar usuario
-    $sql = "INSERT INTO usuarios (nombre, primer_apellido, segundo_apellido, correo, contrasena, rol) 
+    $sql = "INSERT INTO Usuarios (nombre, primer_apellido, segundo_apellido, correo, contrasena, rol) 
             VALUES (?, ?, ?, ?, ?, ?)";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("ssssss", $nombre, $primer_apellido, $segundo_apellido, $correo, $hash, $rol);

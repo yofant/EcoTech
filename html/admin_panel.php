@@ -1,6 +1,8 @@
 <?php
 session_start();
 
+
+
 if (!isset($_SESSION['usuario'])) {
     header("Location: login_user.php?status=session_expired");
     exit();
@@ -14,7 +16,7 @@ if (($_SESSION['usuario']['rol'] ?? '') !== 'admin') {
 include("../php/conexion.php");
 
 $adminNombre = $_SESSION['usuario']['nombre'] ?: 'Administrador';
-$panelesPermitidos = ['resumen', 'usuarios', 'empresas', 'acciones', 'estado'];
+$panelesPermitidos = ['resumen', 'Usuarios', 'Empresas', 'Acciones', 'Estado'];
 $activePanel = $_GET['panel'] ?? 'resumen';
 
 if (!in_array($activePanel, $panelesPermitidos, true)) {

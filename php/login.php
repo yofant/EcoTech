@@ -8,7 +8,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $correo = $_POST['correo'];
         $contrasena = $_POST['contrasena'];
 
-        $sql = "SELECT * FROM usuarios WHERE correo = ?";
+        $sql = "SELECT * FROM Usuarios WHERE correo = ?";
         $stmt = $conn->prepare($sql);
         $stmt->bind_param("s", $correo);
         $stmt->execute();
