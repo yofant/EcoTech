@@ -1,74 +1,161 @@
 <!doctype html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Terminos y Condiciones</title>
+    <title>Términos y condiciones | EcoTech</title>
 
     <!-- Bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous" />
+
+    <!-- Tipografía del tema -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap"
+        rel="stylesheet" />
+
+    <!-- Sistema de diseño + layout de la página -->
+    <link rel="stylesheet" href="../css/theme.css?v=2" />
+    <link rel="stylesheet" href="../css/terminos_condiciones.css?v=2" />
 
     <!-- Iconos -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
-
-    <!-- Estilos personalizados -->
-    <link rel="stylesheet" href="../css/terminos_condiciones.css" />
-
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" />
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+
+    <!-- ===================== Navegación ===================== -->
+    <nav class="navbar navbar-expand-lg eco-navbar" data-navbar>
         <div class="container">
-            <a href="#" class="navbar-brand logo"><span class="text-success">Eco</span>Tech</a>
-            <!-- Botón adaptable para menú responsive -->
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarS"
-                aria-controls="navbarS" aria-expanded="false" aria-label="Toggle navigation">
+            <a href="index.php" class="navbar-brand">
+                <span class="eco-brand__mark"><i class="bi bi-recycle"></i></span>
+                <span class="eco-brand__text"><em>Eco</em>Tech</span>
+            </a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarPrincipal"
+                aria-controls="navbarPrincipal" aria-expanded="false" aria-label="Abrir menú de navegación">
                 <span class="navbar-toggler-icon"></span>
             </button>
+
+            <div class="collapse navbar-collapse" id="navbarPrincipal">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.php">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="nosotros.html">Nosotros</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="servicios.html">Servicios</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="productos.html">Productos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="herramientas.html">Tecnología</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contacto.php">Contacto</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="eco-navbar__cta" href="login_user.php">
+                            <i class="bi bi-box-arrow-in-right"></i> Ingresar
+                        </a>
+                    </li>
+                </ul>
+            </div>
         </div>
     </nav>
 
-    <div class="card-box">
-        <h4>Terminos y Condiciones</h4>
-        <p class="text-center mb-3" style="font-size: 14px">
-            1. Aceptación de los términos
-            Al utilizar el formulario de contacto de EcoTech, el usuario acepta los presentes Términos y Condiciones,
-            así como nuestra Política de Privacidad.
-            2. Uso del formulario de contacto
-            - El formulario está destinado únicamente para consultas, solicitudes de información o comentarios
-            relacionados con los servicios de EcoTech.
-            - El usuario se compromete a proporcionar información veraz, completa y actualizada.
-            - Queda prohibido el uso del formulario para enviar mensajes ofensivos, spam o contenido ilícito.
-            3. Tratamiento de datos personales
-            - Los datos proporcionados (nombre, correo electrónico, mensaje) serán utilizados exclusivamente para
-            responder a la consulta realizada.
-            - EcoTech garantiza la confidencialidad de la información y su tratamiento conforme a la Ley 1581 de 2012 de
-            Protección de Datos Personales en Colombia.
-            - El usuario puede ejercer sus derechos de acceso, rectificación y supresión enviando una solicitud al
-            correo oficial de EcoTech.
-            4. Limitación de responsabilidad
-            - EcoTech no se responsabiliza por fallos técnicos, interrupciones del servicio o errores en la transmisión
-            de datos que puedan afectar el envío del formulario.
-            - Las respuestas a las consultas se realizarán en un plazo razonable, sin que ello implique obligación
-            contractual.
-            5. Modificaciones
-            EcoTech se reserva el derecho de actualizar o modificar estos Términos y Condiciones en cualquier momento.
-            La fecha de última actualización se indicará al final del documento.
-            6. Legislación aplicable
-            Estos Términos y Condiciones se rigen por las leyes de la República de Colombia. Cualquier controversia será
-            sometida a los tribunales competentes de Bogotá, D.C.
+    <main class="legal-shell">
+        <div class="container">
+            <article class="legal-card" data-reveal>
+                <header class="legal-head">
+                    <span class="eco-eyebrow">Documento legal</span>
+                    <h1 class="eco-title">Términos y condiciones</h1>
+                    <p class="eco-lead">
+                        Al utilizar el formulario de contacto de EcoTech, el usuario acepta los presentes términos,
+                        así como nuestra política de privacidad.
+                    </p>
+                </header>
 
-            Última actualización: Marzo 2026
-        </p>
+                <section class="clause">
+                    <h2><span>01</span> Aceptación de los términos</h2>
+                    <p>
+                        Al utilizar el formulario de contacto de EcoTech, el usuario acepta los presentes Términos y
+                        Condiciones, así como nuestra Política de Privacidad.
+                    </p>
+                </section>
 
-        <button type="button" class="btn-main" onclick="window.location.href='contacto.html'">Volver</button>
-    </div>
+                <section class="clause">
+                    <h2><span>02</span> Uso del formulario de contacto</h2>
+                    <ul>
+                        <li>El formulario está destinado únicamente para consultas, solicitudes de información o
+                            comentarios relacionados con los servicios de EcoTech.</li>
+                        <li>El usuario se compromete a proporcionar información veraz, completa y actualizada.</li>
+                        <li>Queda prohibido el uso del formulario para enviar mensajes ofensivos, spam o contenido
+                            ilícito.</li>
+                    </ul>
+                </section>
 
-    <!-- CDN de Bootstrap JavaScript para funcionalidad interactiva -->
+                <section class="clause">
+                    <h2><span>03</span> Tratamiento de datos personales</h2>
+                    <ul>
+                        <li>Los datos proporcionados (nombre, correo electrónico, mensaje) serán utilizados
+                            exclusivamente para responder a la consulta realizada.</li>
+                        <li>EcoTech garantiza la confidencialidad de la información y su tratamiento conforme a la
+                            Ley 1581 de 2012 de Protección de Datos Personales en Colombia.</li>
+                        <li>El usuario puede ejercer sus derechos de acceso, rectificación y supresión enviando una
+                            solicitud al correo oficial de EcoTech.</li>
+                    </ul>
+                </section>
+
+                <section class="clause">
+                    <h2><span>04</span> Limitación de responsabilidad</h2>
+                    <ul>
+                        <li>EcoTech no se responsabiliza por fallos técnicos, interrupciones del servicio o errores
+                            en la transmisión de datos que puedan afectar el envío del formulario.</li>
+                        <li>Las respuestas a las consultas se realizarán en un plazo razonable, sin que ello implique
+                            obligación contractual.</li>
+                    </ul>
+                </section>
+
+                <section class="clause">
+                    <h2><span>05</span> Modificaciones</h2>
+                    <p>
+                        EcoTech se reserva el derecho de actualizar o modificar estos Términos y Condiciones en
+                        cualquier momento. La fecha de última actualización se indica al final del documento.
+                    </p>
+                </section>
+
+                <section class="clause">
+                    <h2><span>06</span> Legislación aplicable</h2>
+                    <p>
+                        Estos Términos y Condiciones se rigen por las leyes de la República de Colombia. Cualquier
+                        controversia será sometida a los tribunales competentes de Bogotá, D.C.
+                    </p>
+                </section>
+
+                <p class="legal-updated">Última actualización: marzo de 2026</p>
+
+                <div class="legal-actions">
+                    <a href="contacto.php" class="eco-btn eco-btn--primary">
+                        Volver al contacto <i class="bi bi-arrow-left"></i>
+                    </a>
+                    <a href="index.php" class="eco-btn eco-btn--ghost">Ir al inicio</a>
+                </div>
+            </article>
+        </div>
+    </main>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
         crossorigin="anonymous"></script>
+
+    <script src="../Js/theme.js?v=2"></script>
+
 </body>
 
 </html>

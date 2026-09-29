@@ -1,148 +1,156 @@
-* {
-    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+/* EcoTech — Layout de la página de servicios (html/servicios.html)
+   Los componentes comunes vienen de css/theme.css. */
+
+/* Encabezado de la página */
+.page-head {
+    padding-top: calc(var(--eco-nav-offset) + clamp(2.5rem, 6vw, 4.5rem));
+    padding-bottom: clamp(2rem, 4vw, 3rem);
+    text-align: center;
 }
 
-body.servicios-page,
-.servicios-page {
-    background: #161816;
+.page-head .eco-title {
+    max-width: 20ch;
+    margin-inline: auto;
+}
+
+/* Bloques de servicio */
+.servicio {
+    display: flex;
+    flex-direction: column;
+    padding: clamp(1.6rem, 3vw, 2.4rem);
+    border: 1px solid var(--eco-border);
+    border-radius: var(--eco-radius-lg);
+    background: linear-gradient(160deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.015));
+    box-shadow: var(--eco-shadow);
+    transition: transform var(--eco-base), border-color var(--eco-base), box-shadow var(--eco-base);
+}
+
+.servicio:hover {
+    transform: translateY(-6px);
+    border-color: var(--eco-border-strong);
+    box-shadow: var(--eco-shadow-lg), 0 0 40px var(--eco-glow-soft);
+}
+
+.servicio__head {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.35rem;
+}
+
+.servicio__icon {
+    display: grid;
+    place-items: center;
+    flex: 0 0 auto;
+    width: 54px;
+    height: 54px;
+    border-radius: 15px;
+    background: var(--eco-glow-soft);
+    border: 1px solid var(--eco-border);
+    color: var(--eco-primary);
+    font-size: 1.5rem;
+    transition: transform var(--eco-base), background var(--eco-base);
+}
+
+.servicio:hover .servicio__icon {
+    transform: translateY(-3px) rotate(-6deg);
+    background: rgba(46, 230, 138, 0.2);
+}
+
+.servicio__title {
+    font-size: clamp(1.3rem, 2.4vw, 1.6rem);
     margin: 0;
-    padding: 0;
-    min-height: 100vh;
-    color: #fff;
 }
 
-/* Contenido bajo navbar fija */
-.servicios-main {
-    padding-top: 6rem;
-    padding-bottom: 3rem;
-}
-
-.navbar-nav a {
-    font-size: 15px;
-    text-transform: uppercase;
-    font-weight: 500;
-}
-
-.navbar-dark .navbar-brand {
-    color: #fff;
-    font-size: 25px;
-    text-transform: uppercase;
-    font-weight: bold;
-    letter-spacing: 2px;
-}
-
-.navbar-light .navbar-brand,
-.navbar-light .navbar-brand:hover {
-    color: #000;
-}
-
-.navbar-toggler {
-    padding: 1px 5px;
-    font-size: 19px;
-    line-height: 0.3;
-}
-
-.texto-efecto {
-    font-size: 2rem;
-    font-weight: bold;
-    color: #2ECC71;
-    transition: all 0.3s ease;
-}
-
-.texto-efecto:hover {
-    transform: translateY(-5px);
-    text-shadow: 0 0 10px #00ff99, 0 0 20px #00ff99;
-    color: #39FF14;
-}
-
-.logo {
-    font-size: 3rem;
-    font-weight: bold;
-    color: #2ECC71;
-    transition: all 0.3s ease;
-    animation: parpadeo 1s infinite;
-}
-
-/* Título principal de la página (mismo neón, tamaño legible) */
-.servicios-hero-title {
-    font-size: clamp(1.75rem, 5vw, 2.75rem);
-    font-weight: 800;
-    line-height: 1.2;
-}
-
-/* Títulos dentro de cada bloque de servicio */
-.titulo-servicio {
-    color: #2ECC71;
-    font-weight: 700;
-    font-size: 1.35rem;
-    transition: color 0.3s ease, text-shadow 0.3s ease;
-}
-
-.card-servicio {
-    background-color: rgba(22, 24, 22, 0.92);
-    border: 1px solid rgba(46, 204, 113, 0.22);
-    border-radius: 16px;
-    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.35);
-    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
-}
-
-.card-servicio:hover {
-    transform: translateY(-8px);
-    border-color: rgba(57, 255, 20, 0.35);
-    box-shadow:
-        0 12px 28px rgba(0, 0, 0, 0.45),
-        0 0 24px rgba(0, 255, 153, 0.12);
-}
-
-.card-servicio:hover .titulo-servicio {
-    color: #39FF14;
-    text-shadow: 0 0 8px #00ff99, 0 0 16px rgba(0, 255, 153, 0.35);
-}
-
-.card-servicio img {
-    border-radius: 10px;
-    transition: transform 0.35s ease, box-shadow 0.35s ease;
-}
-
-/* Trazabilidad: ancho similar al de las imágenes en col-md-6 (mitad del contenido) */
-.img-servicio-trazabilidad {
+.servicio__index {
     display: block;
-    max-width: min(520px, 88%);
-    height: auto;
-    margin-left: auto;
-    margin-right: auto;
-    object-fit: contain;
+    color: var(--eco-primary);
+    font-family: var(--eco-font-body);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
 }
 
-.card-servicio:hover img {
+.servicio__media {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    border-radius: var(--eco-radius);
+    border: 1px solid var(--eco-border);
+    margin-bottom: 1.5rem;
+    transition: transform var(--eco-slow);
+}
+
+.servicio:hover .servicio__media {
     transform: scale(1.02);
-    box-shadow: 0 0 20px rgba(0, 255, 153, 0.15);
 }
 
-@keyframes parpadeo {
-    0% {
-        text-shadow: 0 0 1px #00ff99, 0 0 10px #00ff99;
-        color: #39FF14;
-    }
+.servicio__body p {
+    font-size: 0.97rem;
+    margin-bottom: 1rem;
+}
 
-    50% {
-        text-shadow: none;
-        color: #2ECC71;
-    }
+.servicio__body p:last-of-type {
+    margin-bottom: 0;
+}
 
-    100% {
-        text-shadow: 0 0 2px #00ff99, 0 0 10px #00ff99;
-        color: #39FF14;
+.servicio__body p:last-child {
+    margin-bottom: 1.75rem;
+}
+
+.servicio__foot {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: auto;
+    padding-top: 1.35rem;
+    border-top: 1px solid var(--eco-border);
+}
+
+.servicio__foot span {
+    color: var(--eco-text-dim);
+    font-size: 0.82rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+
+/* La trazabilidad ocupa el ancho completo */
+.servicio--wide {
+    grid-column: 1 / -1;
+}
+
+@media (min-width: 992px) {
+    .servicios-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: clamp(1.5rem, 2.5vw, 2rem);
     }
 }
 
-@media (max-width: 767px) {
-    .navbar-nav {
-        font-size: 25px;
-        text-align: center;
-    }
+/* Llamado a la acción final */
+.cta-band {
+    margin-top: clamp(2.5rem, 5vw, 4rem);
+    padding: clamp(2rem, 4vw, 3rem);
+    border: 1px solid var(--eco-border);
+    border-radius: var(--eco-radius-lg);
+    background:
+        radial-gradient(30rem 18rem at 15% 0%, rgba(46, 230, 138, 0.14), transparent 70%),
+        linear-gradient(160deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.015));
+    box-shadow: var(--eco-shadow);
+    text-align: center;
+}
 
-    .texto-efecto {
-        font-size: 1.35rem;
-    }
+.cta-band .eco-lead {
+    margin-inline: auto;
+    margin-bottom: 1.75rem;
+}
+
+.cta-band__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.85rem;
+    justify-content: center;
 }

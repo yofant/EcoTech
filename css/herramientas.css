@@ -1,194 +1,154 @@
-* {
-    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+/* EcoTech — Layout de la página de tecnología (html/herramientas.html)
+   Los componentes comunes vienen de css/theme.css. */
+
+.page-head {
+    padding-top: calc(var(--eco-nav-offset) + clamp(2.5rem, 6vw, 4.5rem));
+    padding-bottom: clamp(2rem, 4vw, 3rem);
+    text-align: center;
 }
 
-body {
-    background: #161816;
-    margin: 0;
-    padding: 0;
+.page-head .eco-title {
+    max-width: 20ch;
+    margin-inline: auto;
 }
 
-/* Espacio bajo navbar fija; tarjetas centradas en la fila */
-.nosotros-main {
-    padding-top: 6rem;
-    padding-right: clamp(1rem, 4vw, 3rem);
-    padding-bottom: 2rem;
-    padding-left: clamp(1rem, 4vw, 3rem);
+/* Fila de herramienta: texto + imagen alternados */
+.stack {
+    display: grid;
+    gap: clamp(1.5rem, 3vw, 2.25rem);
 }
 
-.nosotros-main .row {
-    margin-left: auto;
-    margin-right: auto;
-    max-width: 1200px;
+.tool {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: clamp(1.5rem, 3.5vw, 2.5rem);
+    align-items: center;
+    padding: clamp(1.5rem, 3vw, 2.25rem);
+    border: 1px solid var(--eco-border);
+    border-radius: var(--eco-radius-lg);
+    background: linear-gradient(160deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.015));
+    box-shadow: var(--eco-shadow);
+    transition: transform var(--eco-base), border-color var(--eco-base), box-shadow var(--eco-base);
 }
 
-.nosotros-card {
-    max-width: 420px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-/* Tarjeta inferior: mismo ancho que las dos de arriba juntas (toda la fila) */
-.nosotros-card--wide {
-    max-width: 965px;
-    width: 100%;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.nosotros-card .card-title {
-    font-size: 2rem;
-    font-weight: 700;
-    line-height: 1.3;
-}
-
-.nosotros-card--wide-body {
-    padding-left: clamp(1rem, 3vw, 2.5rem);
-    padding-right: clamp(1rem, 3vw, 2.5rem);
-}
-
-/* Backend: imagen en columna propia, alineada a la derecha en desktop */
-@media (min-width: 768px) {
-    .herramientas-img-backend {
-        display: block;
-        max-height: 240px;
-        width: auto;
-        max-width: 100%;
-        margin-left: auto;
-        object-fit: contain;
-    }
-}
-
-.section-padding {
-    padding: 70px 0;
-}
-
-.navbar-nav a {
-    font-size: 15px;
-    text-transform: uppercase;
-    font-weight: 500;
-
-
-}
-
-.navbar-dark .navbar-brand {
-    color: #fff;
-    font-size: 25px;
-    text-transform: uppercase;
-    font-weight: bold;
-    letter-spacing: 2px;
-}
-
-.navbar-light .navbar-brand,
-.navbar-light .navbar-brand:hover {
-    color: #000;
-}
-
-.w-100 {
-    height: 100%;
-}
-
-.navbar-toggler {
-    padding: 1px 5px;
-    font-size: 19px;
-    line-height: 0.3;
-}
-
-.texto-efecto {
-    font-size: 2rem;
-    font-weight: bold;
-    color: #2ECC71;
-    /* Verde base */
-    transition: all 0.3s ease;
-    /* Suaviza el efecto */
-}
-
-.texto-efecto:hover {
+.tool:hover {
     transform: translateY(-5px);
-    /* Eleva el texto */
-    text-shadow: 0 0 10px #00ff99, 0 0 20px #00ff99;
-    /* Retroiluminado verde */
-    color: #39FF14;
-    /* Verde más brillante al pasar el mouse */
+    border-color: var(--eco-border-strong);
+    box-shadow: var(--eco-shadow-lg), 0 0 36px var(--eco-glow-soft);
 }
 
-.logo {
-    font-size: 3rem;
-    /* Ajusta el tamaño según tu logo */
-    font-weight: bold;
-    color: #2ECC71;
-    /* Verde base */
-    transition: all 0.3s ease;
-}
-
-.logo {
-    font-size: 3rem;
-    /* Ajusta el tamaño según tu logo */
-    font-weight: bold;
-    color: #2ECC71;
-    /* Verde base */
-    animation: parpadeo 1s infinite;
-    /* Parpadeo constante */
-}
-
-.btn-main {
-    margin-top: 15px;
-    width: 20%;
-    padding: 12px;
-    border-radius: 10px;
-    background: linear-gradient(to right, #206A0C, #39BC15);
-    border: none;
-    font-size: 20px;
-    font-weight: 800;
-    color: #000000 !important;
-    transition: 0.3s ease;
-}
-
-.btn-main:hover {
-    background-position: right;
-    transform: translateY(-6px);
-    box-shadow: 0 8px 15px rgba(57, 188, 21, 0.5);
-}
-
-/* Nota: evitamos forzar color global en <p> para no pisar `text-white` de Bootstrap */
-
-/* Animación de parpadeo tipo neón */
-@keyframes parpadeo {
-    0% {
-        text-shadow: 0 0 1px #00ff99, 0 0 10px #00ff99;
-        color: #39FF14;
+/* Alterna el orden en pantallas anchas */
+@media (min-width: 992px) {
+    .tool {
+        grid-template-columns: 1.15fr 0.85fr;
     }
 
-    50% {
-        text-shadow: none;
-        color: #2ECC71;
-    }
-
-    100% {
-        text-shadow: 0 0 2px #00ff99, 0 0 10px #00ff99;
-        color: #39FF14;
+    .tool:nth-child(even) .tool__media {
+        order: -1;
     }
 }
 
-@media(max-width: 767px) {
-    .navbar-nav {
-        font-size: 25px;
-        text-align: center;
-    }
+.tool__head {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.1rem;
+}
 
-    .w-100 {
-        height: 70vh;
-    }
+.tool__icon {
+    display: grid;
+    place-items: center;
+    flex: 0 0 auto;
+    width: 50px;
+    height: 50px;
+    border-radius: 14px;
+    background: var(--eco-glow-soft);
+    border: 1px solid var(--eco-border);
+    color: var(--eco-primary);
+    font-size: 1.4rem;
+    transition: transform var(--eco-base);
+}
 
-    .about-text {
-        padding-top: 50px;
-    }
+.tool:hover .tool__icon {
+    transform: translateY(-3px) scale(1.05);
+}
 
-    .card {
-        margin-bottom: 30px;
-    }
+.tool__title {
+    font-size: clamp(1.25rem, 2.4vw, 1.55rem);
+    margin: 0;
+}
 
-    .section-padding {
-        padding: 50px 0;
-    }
+.tool__index {
+    display: block;
+    color: var(--eco-primary);
+    font-family: var(--eco-font-body);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+}
+
+.tool__body ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 0.85rem;
+}
+
+.tool__body li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.7rem;
+    color: var(--eco-text-muted);
+    font-size: 0.96rem;
+}
+
+.tool__body li i {
+    color: var(--eco-primary);
+    margin-top: 0.15rem;
+}
+
+.tool__body strong {
+    color: var(--eco-text);
+    font-weight: 600;
+}
+
+.tool__media {
+    border: 1px solid var(--eco-border);
+    border-radius: var(--eco-radius);
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.02);
+}
+
+.tool__media img {
+    width: 100%;
+    display: block;
+    aspect-ratio: 16 / 10;
+    /* Los logos vienen con márgenes transparentes: "contain" los muestra
+       completos y centrados en vez de recortarlos */
+    object-fit: contain;
+    padding: clamp(1rem, 2.5vw, 1.75rem);
+    transition: transform 0.9s var(--eco-ease);
+}
+
+.tool:hover .tool__media img {
+    transform: scale(1.04);
+}
+
+/* Cierre */
+.cta-band {
+    padding: clamp(2rem, 4vw, 3rem);
+    border: 1px solid var(--eco-border);
+    border-radius: var(--eco-radius-lg);
+    background:
+        radial-gradient(30rem 18rem at 15% 0%, rgba(46, 230, 138, 0.14), transparent 70%),
+        linear-gradient(160deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.015));
+    box-shadow: var(--eco-shadow);
+    text-align: center;
+}
+
+.cta-band .eco-lead {
+    margin-inline: auto;
+    margin-bottom: 1.75rem;
 }

@@ -2,7 +2,6 @@
 session_start();
 
 
-
 if (!isset($_SESSION['usuario'])) {
     header("Location: login_user.php?status=session_expired");
     exit();

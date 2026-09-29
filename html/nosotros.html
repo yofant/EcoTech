@@ -1,221 +1,330 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="es">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nosotros</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description"
+        content="Conoce EcoTech: misión, visión, valores y propuesta de valor para la gestión de residuos electrónicos." />
+    <title>Nosotros | EcoTech</title>
 
+    <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous" />
-    <!-- Estilos personalizados de EcoTech -->
-    <link rel="stylesheet" href="../css/nosotros.css" />
-    <!-- Bootstrap Icons para íconos -->
+
+    <!-- Tipografía del tema -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap"
+        rel="stylesheet" />
+
+    <!-- Sistema de diseño + layout de la página -->
+    <link rel="stylesheet" href="../css/theme.css?v=2" />
+    <link rel="stylesheet" href="../css/nosotros.css?v=2" />
+
+    <!-- Iconos -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" />
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+
+    <!-- ===================== Navegación ===================== -->
+    <nav class="navbar navbar-expand-lg eco-navbar" data-navbar>
         <div class="container">
-            <a href="index.php" class="navbar-brand logo"><span class="text-success">Eco</span>Tech</a>
-            <!-- Botón adaptable para menú responsive -->
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarS"
-                aria-controls="navbarS" aria-expanded="false" aria-label="Toggle navigation">
+            <a href="index.php" class="navbar-brand">
+                <span class="eco-brand__mark"><i class="bi bi-recycle"></i></span>
+                <span class="eco-brand__text"><em>Eco</em>Tech</span>
+            </a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarPrincipal"
+                aria-controls="navbarPrincipal" aria-expanded="false" aria-label="Abrir menú de navegación">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <!-- Menú de navegación colapsable -->
-            <div class="collapse navbar-collapse" id="navbarS">
+
+            <div class="collapse navbar-collapse" id="navbarPrincipal">
                 <ul class="navbar-nav ms-auto">
-                    <!-- Enlaces de navegación principales -->
                     <li class="nav-item">
-                        <a class="nav-link texto-efecto" href="index.php">Inicio</a>
+                        <a class="nav-link" href="index.php">Inicio</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link texto-efecto" href="servicios.html">Servicios</a>
+                        <a class="nav-link is-active" href="nosotros.html" aria-current="page">Nosotros</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="servicios.html">Servicios</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="productos.html">Productos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="herramientas.html">Tecnología</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contacto.php">Contacto</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="eco-navbar__cta" href="login_user.php">
+                            <i class="bi bi-box-arrow-in-right"></i> Ingresar
+                        </a>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
 
-    <main class="nosotros-main container-fluid">
-        <div class="row justify-content-center align-items-stretch g-4">
-            <div class="col-12 col-sm-10 col-md-6 col-lg-5 col-xl-4">
-                <div class="card text-center bg-dark nosotros-card h-100">
-                    <div class="card-body text-white">
-                        <h3 class="card-title py-2 logo">Sobre Nosotros</h3>
-                        <p class="card-text">
-                            En EcoTec creemos que la tecnología puede tener una segunda vida y que la sostenibilidad
-                            comienza con decisiones responsables. Somos una empresa enfocada en la gestión de residuos
-                            electrónicos (RAEE), ofreciendo soluciones de recolección, reciclaje y reacondicionamiento
-                            de computadores, celulares y periféricos.
-                            Nuestra misión es reducir la contaminación ambiental causada por el desecho inadecuado de
-                            equipos tecnológicos, promoviendo un modelo de economía circular que permita mantener
-                            materiales en uso y brindar acceso a tecnología asequible para comunidades de bajos
+    <main>
+        <!-- ===================== Encabezado ===================== -->
+        <header class="page-head">
+            <div class="container">
+                <span class="eco-eyebrow" data-reveal>Sobre el proyecto</span>
+                <h1 class="eco-title" data-reveal style="--reveal-delay: 70ms">
+                    Creemos en la <span class="eco-gradient-text">segunda vida</span> de la tecnología
+                </h1>
+                <p class="eco-lead" data-reveal style="--reveal-delay: 140ms">
+                    Una iniciativa que combina innovación, sostenibilidad y compromiso social para transformar la
+                    gestión de residuos electrónicos en Colombia.
+                </p>
+            </div>
+        </header>
+
+        <!-- ===================== Quiénes somos ===================== -->
+        <section class="eco-section eco-section--tight">
+            <div class="container">
+                <div class="split">
+                    <div class="split__media" data-reveal>
+                        <img src="../images/propuesta.png" alt="Propuesta de valor de EcoTech" loading="lazy" />
+                    </div>
+
+                    <div class="split__body" data-reveal style="--reveal-delay: 100ms">
+                        <span class="eco-eyebrow">Quiénes somos</span>
+                        <h2 class="eco-title" style="font-size: clamp(1.7rem, 3.6vw, 2.5rem)">
+                            Una empresa que ve el desecho como <span class="eco-gradient-text">recurso</span>
+                        </h2>
+                        <p>
+                            EcoTech nace de la convicción de que la sostenibilidad comienza con decisiones
+                            responsables. Somos una empresa enfocada en la gestión de residuos electrónicos (RAEE),
+                            ofreciendo soluciones de recolección, reciclaje y reacondicionamiento de computadores,
+                            celulares y periféricos.
+                        </p>
+                        <p>
+                            Nuestra misión es reducir la contaminación ambiental causada por el desecho inadecuado
+                            de equipos tecnológicos, promoviendo un modelo de economía circular que mantenga
+                            materiales en uso y brinde acceso a tecnología asequible para comunidades de bajos
                             recursos.
                         </p>
                     </div>
                 </div>
             </div>
-            <div class="col-12 col-sm-10 col-md-6 col-lg-5 col-xl-4">
-                <div class="card text-center bg-dark nosotros-card h-100">
-                    <div class="card-body text-white">
-                        <h3 class="card-title py-2 logo">Lo que nos mueve</h3>
-                        <p class="card-text">
-                            - Misión: Dar una segunda oportunidad a los dispositivos electrónicos, transformando
-                            residuos en recursos útiles para la sociedad.
+        </section>
+
+        <!-- ===================== Misión, visión y valores ===================== -->
+        <section class="eco-section eco-section--tight">
+            <div class="container">
+                <div class="eco-section__head" data-reveal>
+                    <span class="eco-eyebrow">Lo que nos mueve</span>
+                    <h2 class="eco-title">Misión, visión y valores</h2>
+                </div>
+
+                <div class="pillars">
+                    <article class="pillar" data-reveal>
+                        <span class="pillar__icon"><i class="bi bi-bullseye"></i></span>
+                        <h3>Misión</h3>
+                        <p>
+                            Dar una segunda oportunidad a los dispositivos electrónicos, transformando residuos en
+                            recursos útiles para la sociedad.
                         </p>
-                        <p class="card-text">
-                            - Visión: Convertirnos en referentes de innovación sostenible en Colombia y Latinoamérica,
+                    </article>
+
+                    <article class="pillar" data-reveal style="--reveal-delay: 90ms">
+                        <span class="pillar__icon"><i class="bi bi-eye"></i></span>
+                        <h3>Visión</h3>
+                        <p>
+                            Convertirnos en referentes de innovación sostenible en Colombia y Latinoamérica,
                             democratizando el acceso a la tecnología mientras cuidamos el planeta.
                         </p>
-                        <p class="card-text">
-                            - Valores: Responsabilidad ambiental, innovación, transparencia, inclusión social y
-                            compromiso con la calidad.
+                    </article>
+
+                    <article class="pillar" data-reveal style="--reveal-delay: 180ms">
+                        <span class="pillar__icon"><i class="bi bi-gem"></i></span>
+                        <h3>Valores</h3>
+                        <p>
+                            Responsabilidad ambiental, innovación, transparencia, inclusión social y compromiso con
+                            la calidad en cada etapa del proceso.
                         </p>
-                    </div>
+                    </article>
                 </div>
             </div>
-            <div class="col-12">
-                <div class="card bg-dark nosotros-card nosotros-card--wide h-100">
-                    <div class="card-body text-white nosotros-card--wide-body">
-                        <h3 class="card-title py-2 logo text-center">Nuestra Propuesta</h3>
-                        <div class="row align-items-center g-3 g-md-4">
-                            <div class="col-12 col-md-5 text-center text-md-start">
-                                <img src="../images/propuesta.png" alt=""
-                                    class="img-fluid rounded nosotros-propuesta-img" />
-                            </div>
-                            <div class="col-12 col-md-7">
-                                <p class="card-text mb-0 text-center text-md-start">
-                                    A través de una plataforma digital y aplicación móvil, facilitamos la venta,
-                                    intercambio y
-                                    trueque de equipos reacondicionados. Ofrecemos productos confiables, sometidos a
-                                    pruebas de
-                                    rendimiento, y promovemos hábitos de consumo consciente.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        </section>
 
-            <div class="col-12">
-                <div class="card bg-dark nosotros-card nosotros-card--wide h-100">
-                    <div class="card-body text-white nosotros-card--wide-body">
-                        <h3 class="card-title py-2 logo text-center">Impacto</h3>
-                        <div class="row align-items-center g-3 g-md-4">
-                            <div class="col-12 col-md-7">
-                                <p class="card-text mb-0 text-center text-md-start">
-                                    EcoTec contribuye directamente a:
-                                </p>
-                                <br>
-                                <p class="card-text mb-0 text-center text-md-start">- Disminuir la contaminación
-                                    electrónica.</p>
-                                <p class="card-text mb-0 text-center text-md-start">- Promover la reutilización y
-                                    reciclaje responsable.</p>
-                                <p class="card-text mb-0 text-center text-md-start">- Facilitar el acceso a tecnología
-                                    funcional para comunidades vulnerables.</p>
-                                <p class="card-text mb-0 text-center text-md-start">- Educar y generar conciencia sobre
-                                    la importancia de la economía circular.</p>
-                            </div>
-                            <div class="col-12 col-md-5 text-center text-md-start">
-                                <img src="../images/Impacto.png" alt=""
-                                    class="img-fluid rounded nosotros-propuesta-img" />
-                            </div>
-                        </div>
+        <!-- ===================== Nuestra propuesta ===================== -->
+        <section class="eco-section eco-section--tight">
+            <div class="container">
+                <div class="split split--reverse">
+                    <div class="split__media" data-reveal>
+                        <img src="../images/Impacto.png" alt="Impacto ambiental y social de EcoTech" loading="lazy" />
                     </div>
-                </div>
-            </div>
 
-            <div class="col-12">
-                <div class="card bg-dark nosotros-card nosotros-card--wide h-100">
-                    <div class="card-body text-white nosotros-card--wide-body">
-                        <h3 class="card-title py-2 logo text-center">¿Cómo trabajamos?</h3>
-                        <div class="row g-4 text-center">
-                            <div class="col-12 col-md-3">
-                                <i class="bi bi-phone text-success display-5 mb-2"></i>
-                                <h5>1. Recolección</h5>
-                                <p class="small mb-0">Recibimos dispositivos electrónicos en puntos aliados o a través
-                                    de nuestra plataforma.</p>
-                            </div>
-                            <div class="col-12 col-md-3">
-                                <i class="bi bi-gear text-success display-5 mb-2"></i>
-                                <h5>2. Diagnóstico</h5>
-                                <p class="small mb-0">Evaluamos el estado del equipo para definir si puede
-                                    reacondicionarse o debe reciclarse.</p>
-                            </div>
-                            <div class="col-12 col-md-3">
-                                <i class="bi bi-cpu text-success display-5 mb-2"></i>
-                                <h5>3. Reacondicionamiento</h5>
-                                <p class="small mb-0">Reparamos, limpiamos y probamos los equipos bajo estándares de
-                                    calidad.</p>
-                            </div>
-                            <div class="col-12 col-md-3">
-                                <i class="bi bi-people text-success display-5 mb-2"></i>
-                                <h5>4. Nueva Vida</h5>
-                                <p class="small mb-0">Los dispositivos se ponen a disposición de personas y
-                                    organizaciones que los necesitan.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-12">
-                <div class="card bg-dark nosotros-card nosotros-card--wide h-100">
-                    <div class="card-body text-white nosotros-card--wide-body">
-                        <h3 class="card-title py-2 logo text-center">Nuestro impacto en números</h3>
-                        <div class="row g-4 text-center">
-                            <div class="col-6 col-md-3">
-                                <h2 class="text-success mb-1">+1.500</h2>
-                                <p class="small mb-0">Dispositivos recolectados</p>
-                            </div>
-                            <div class="col-6 col-md-3">
-                                <h2 class="text-success mb-1">+900</h2>
-                                <p class="small mb-0">Equipos reacondicionados</p>
-                            </div>
-                            <div class="col-6 col-md-3">
-                                <h2 class="text-success mb-1">+20</h2>
-                                <p class="small mb-0">Aliados y organizaciones</p>
-                            </div>
-                            <div class="col-6 col-md-3">
-                                <h2 class="text-success mb-1">+5</h2>
-                                <p class="small mb-0">Toneladas de RAEE gestionadas</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-12">
-                <div class="card bg-dark nosotros-card nosotros-card--wide h-100">
-                    <div class="card-body text-white text-center">
-                        <h3 class="card-title py-2 logo">¿Te gustaría ser parte del cambio?</h3>
-                        <p class="card-text mb-3">
-                            Súmate a EcoTec donando tus equipos, convirtiéndote en aliado o adquiriendo tecnología
-                            reacondicionada. Cada acción cuenta para reducir la huella ambiental.
+                    <div class="split__body" data-reveal style="--reveal-delay: 100ms">
+                        <span class="eco-eyebrow">Nuestra propuesta</span>
+                        <h2 class="eco-title" style="font-size: clamp(1.7rem, 3.6vw, 2.5rem)">
+                            Una plataforma para <span class="eco-gradient-text">circulación</span> de equipos
+                        </h2>
+                        <p>
+                            A través de una plataforma digital y una aplicación móvil, facilitamos la venta,
+                            intercambio y trueque de equipos reacondicionados. Ofrecemos productos confiables,
+                            sometidos a pruebas de rendimiento, y promovemos hábitos de consumo consciente.
                         </p>
-                        <button type="button" class="btn-main" onclick="window.location.href='contacto.html'">Contactanos</button>
+
+                        <ul class="checklist" style="margin-top: 1.5rem">
+                            <li><i class="bi bi-check-circle-fill"></i> Disminuir la contaminación electrónica.</li>
+                            <li><i class="bi bi-check-circle-fill"></i> Promover la reutilización y reciclaje responsable.</li>
+                            <li><i class="bi bi-check-circle-fill"></i> Facilitar tecnología funcional para comunidades vulnerables.</li>
+                            <li><i class="bi bi-check-circle-fill"></i> Educar sobre la importancia de la economía circular.</li>
+                        </ul>
                     </div>
                 </div>
             </div>
-        </div>
-        <br>
-    
-        <div class="col-12">
-            <div class="card bg-dark nosotros-card nosotros-card--wide h-100">
-                <div class="card-body text-white text-center">
-                    <h3 class="card-title py-2 logo">Herramientas utilizadas</h3>
-                    <button type="button" class="btn-main" onclick="window.location.href='herramientas.html'">Herramientas</button>
+        </section>
+
+        <!-- ===================== Cómo trabajamos ===================== -->
+        <section class="eco-section eco-section--tight">
+            <div class="container">
+                <div class="eco-section__head" data-reveal>
+                    <span class="eco-eyebrow">Proceso</span>
+                    <h2 class="eco-title">¿Cómo trabajamos?</h2>
+                    <p class="eco-lead">
+                        Cuatro etapas claras que puedes seguir desde el retiro hasta la entrega del equipo.
+                    </p>
+                </div>
+
+                <div class="steps">
+                    <article class="step" data-reveal>
+                        <span class="step__icon"><i class="bi bi-inbox"></i></span>
+                        <h3>1. Recolección</h3>
+                        <p>Recibimos dispositivos electrónicos en puntos aliados o a través de nuestra plataforma.</p>
+                    </article>
+
+                    <article class="step" data-reveal style="--reveal-delay: 90ms">
+                        <span class="step__icon"><i class="bi bi-clipboard2-pulse"></i></span>
+                        <h3>2. Diagnóstico</h3>
+                        <p>Evaluamos el estado del equipo para definir si puede reacondicionarse o debe reciclarse.</p>
+                    </article>
+
+                    <article class="step" data-reveal style="--reveal-delay: 180ms">
+                        <span class="step__icon"><i class="bi bi-cpu"></i></span>
+                        <h3>3. Reacondicionamiento</h3>
+                        <p>Reparamos, limpiamos y probamos los equipos bajo estándares de calidad.</p>
+                    </article>
+
+                    <article class="step" data-reveal style="--reveal-delay: 270ms">
+                        <span class="step__icon"><i class="bi bi-people"></i></span>
+                        <h3>4. Nueva vida</h3>
+                        <p>Los dispositivos se ponen a disposición de personas y organizaciones que los necesitan.</p>
+                    </article>
                 </div>
             </div>
-        </div>
-    </div>
+        </section>
+
+        <!-- ===================== Impacto en cifras ===================== -->
+        <section class="eco-strip">
+            <div class="container">
+                <div class="eco-section__head" data-reveal style="margin-bottom: 2.5rem">
+                    <span class="eco-eyebrow">Resultados</span>
+                    <h2 class="eco-title" style="font-size: clamp(1.7rem, 3.4vw, 2.3rem)">Nuestro impacto</h2>
+                </div>
+
+                <div class="impact-stats">
+                    <div data-reveal>
+                        <div class="eco-stat__value">+1.500</div>
+                        <p class="eco-stat__label">Dispositivos recolectados</p>
+                    </div>
+                    <div data-reveal style="--reveal-delay: 90ms">
+                        <div class="eco-stat__value">+900</div>
+                        <p class="eco-stat__label">Equipos reacondicionados</p>
+                    </div>
+                    <div data-reveal style="--reveal-delay: 180ms">
+                        <div class="eco-stat__value">+20</div>
+                        <p class="eco-stat__label">Aliados y organizaciones</p>
+                    </div>
+                    <div data-reveal style="--reveal-delay: 270ms">
+                        <div class="eco-stat__value">+5 t</div>
+                        <p class="eco-stat__label">Toneladas de RAEE gestionadas</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===================== Cierre ===================== -->
+        <section class="eco-section eco-section--tight">
+            <div class="container">
+                <div class="cta-band" data-reveal>
+                    <h2 class="eco-title" style="font-size: clamp(1.7rem, 3.4vw, 2.3rem)">
+                        ¿Te gustaría ser parte del cambio?
+                    </h2>
+                    <p class="eco-lead">
+                        Súmate a EcoTech donando tus equipos, convirtiéndose en aliado o adquiriendo tecnología
+                        reacondicionada. Cada acción cuenta para reducir la huella ambiental.
+                    </p>
+                    <div class="cta-band__actions">
+                        <a href="contacto.php" class="eco-btn eco-btn--primary eco-btn--lg">
+                            Contáctanos <i class="bi bi-arrow-right"></i>
+                        </a>
+                        <a href="herramientas.html" class="eco-btn eco-btn--ghost eco-btn--lg">
+                            Ver tecnología
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
+
+    <!-- ===================== Pie de página ===================== -->
+    <footer class="eco-footer">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-5">
+                    <div class="eco-footer__brand">
+                        <span class="eco-brand__mark"><i class="bi bi-recycle"></i></span>
+                        <span><em class="eco-gradient-text">Eco</em>Tech</span>
+                    </div>
+                    <p style="max-width: 42ch">
+                        Gestión responsable de residuos electrónicos, reacondicionamiento de equipos y trazabilidad
+                        al servicio de una economía circular.
+                    </p>
+                </div>
+
+                <div class="col-6 col-lg-3">
+                    <h4 class="eco-footer__title">Navegación</h4>
+                    <ul class="eco-footer__links">
+                        <li><a href="index.php">Inicio</a></li>
+                        <li><a href="nosotros.html">Nosotros</a></li>
+                        <li><a href="servicios.html">Servicios</a></li>
+                        <li><a href="productos.html">Productos</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-6 col-lg-4">
+                    <h4 class="eco-footer__title">Contacto</h4>
+                    <ul class="eco-footer__links">
+                        <li><a href="contacto.php">Formulario de contacto</a></li>
+                        <li><a href="herramientas.html">Tecnología</a></li>
+                        <li><a href="login_user.php">Iniciar sesión</a></li>
+                        <li><a href="terminos_condiciones.html">Términos y condiciones</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="eco-footer__bottom d-flex flex-column flex-md-row justify-content-between gap-2">
+                <p>&copy; 2026 EcoTech. Todos los derechos reservados.</p>
+                <p>Diseñado y desarrollado en Colombia.</p>
+            </div>
+        </div>
+    </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
         crossorigin="anonymous"></script>
+
+    <script src="../Js/theme.js?v=2"></script>
 
 </body>
 

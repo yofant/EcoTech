@@ -1,49 +1,203 @@
 <!doctype html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Productos</title>
+    <meta name="description"
+        content="Catálogo de equipos tecnológicos reacondicionados por EcoTech: próxima disponibilidad." />
+    <title>Productos | EcoTech</title>
+
+    <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous" />
-    <!-- Estilos personalizados de EcoTech -->
-    <link rel="stylesheet" href=".. /css/productos.css" />
-    <!-- Bootstrap Icons para íconos -->
+
+    <!-- Tipografía del tema -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap"
+        rel="stylesheet" />
+
+    <!-- Sistema de diseño + layout de la página -->
+    <link rel="stylesheet" href="../css/theme.css?v=2" />
+    <link rel="stylesheet" href="../css/productos.css?v=2" />
+
+    <!-- Iconos -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" />
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+
+    <!-- ===================== Navegación ===================== -->
+    <nav class="navbar navbar-expand-lg eco-navbar" data-navbar>
         <div class="container">
-            <a href="index.html" class="navbar-brand logo"><span class="text-success">Eco</span>Tech</a>
-            <!-- Botón adaptable para menú responsive -->
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarS"
-                aria-controls="navbarS" aria-expanded="false" aria-label="Toggle navigation">
+            <a href="index.php" class="navbar-brand">
+                <span class="eco-brand__mark"><i class="bi bi-recycle"></i></span>
+                <span class="eco-brand__text"><em>Eco</em>Tech</span>
+            </a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarPrincipal"
+                aria-controls="navbarPrincipal" aria-expanded="false" aria-label="Abrir menú de navegación">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <!-- Menú de navegación colapsable -->
-            <div class="collapse navbar-collapse" id="navbarS">
+
+            <div class="collapse navbar-collapse" id="navbarPrincipal">
                 <ul class="navbar-nav ms-auto">
-                    <!-- Enlaces de navegación principales -->
                     <li class="nav-item">
-                        <a class="nav-link texto-efecto" href="login.html">Iniciar Sesión</a>
+                        <a class="nav-link" href="index.php">Inicio</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link texto-efecto" href="servicios.html">Servicios</a>
+                        <a class="nav-link" href="nosotros.html">Nosotros</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link texto-efecto" href="contacto.html">Contacto</a>
+                        <a class="nav-link" href="servicios.html">Servicios</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link texto-efecto" href="nosotros.html">Nosotros</a>
+                        <a class="nav-link is-active" href="productos.html" aria-current="page">Productos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="herramientas.html">Tecnología</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contacto.php">Contacto</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="eco-navbar__cta" href="login_user.php">
+                            <i class="bi bi-box-arrow-in-right"></i> Ingresar
+                        </a>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
 
-    
+    <main>
+        <!-- ===================== Encabezado ===================== -->
+        <header class="page-head">
+            <div class="container">
+                <span class="eco-eyebrow" data-reveal>Catálogo</span>
+                <h1 class="eco-title" data-reveal style="--reveal-delay: 70ms">
+                    Equipos <span class="eco-gradient-text">reacondicionados</span>
+                </h1>
+                <p class="eco-lead" data-reveal style="--reveal-delay: 140ms">
+                    Publicamos aquí los equipos que han superado nuestras pruebas de calidad.
+                </p>
+            </div>
+        </header>
+
+        <!-- ===================== Estado actual ===================== -->
+        <section class="eco-section eco-section--tight">
+            <div class="container">
+                <div class="building" data-reveal>
+                    <div>
+                        <span class="building__icon"><i class="bi bi-cone-striped"></i></span>
+                        <h2 class="building__title">Estamos preparando el catálogo</h2>
+                        <p class="building__text">
+                            La tienda de equipos reacondicionados está en construcción. Mientras tanto, puedes
+                            escribirnos para consultar disponibilidad de un equipo específico o dejar tu equipo
+                            en nuestras manos.
+                        </p>
+                        <div class="building__actions">
+                            <a href="contacto.php" class="eco-btn eco-btn--primary eco-btn--lg">
+                                Consultar disponibilidad <i class="bi bi-arrow-right"></i>
+                            </a>
+                            <a href="servicios.html" class="eco-btn eco-btn--ghost eco-btn--lg">Ver servicios</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===================== Categorías previstas ===================== -->
+        <section class="eco-section eco-section--tight">
+            <div class="container">
+                <div class="eco-section__head" data-reveal>
+                    <span class="eco-eyebrow">Qué tendremos</span>
+                    <h2 class="eco-title">Categorías del catálogo</h2>
+                    <p class="eco-lead">
+                        Cada equipo se publica con su estado, pruebas realizadas y garantía correspondiente.
+                    </p>
+                </div>
+
+                <div class="categories">
+                    <article class="category" data-reveal>
+                        <span class="category__icon"><i class="bi bi-laptop"></i></span>
+                        <h2>Portátiles</h2>
+                        <p>Laptops reacondicionados con diagnóstico, cambio de componentes y pruebas de
+                            rendimiento.</p>
+                    </article>
+
+                    <article class="category" data-reveal style="--reveal-delay: 90ms">
+                        <span class="category__icon"><i class="bi bi-display"></i></span>
+                        <h2>Escritorios</h2>
+                        <p>Equipos de escritorio, monitores y periféricos listos para volver a operar.</p>
+                    </article>
+
+                    <article class="category" data-reveal style="--reveal-delay: 180ms">
+                        <span class="category__icon"><i class="bi bi-phone"></i></span>
+                        <h2>Móviles y tablets</h2>
+                        <p>Dispositivos portables recuperados, con batería y conectividad verificadas.</p>
+                    </article>
+
+                    <article class="category" data-reveal style="--reveal-delay: 270ms">
+                        <span class="category__icon"><i class="bi bi-hdd"></i></span>
+                        <h2>Componentes</h2>
+                        <p>Discos, memorias y circuitos recuperados mediante destrucción segura de datos.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ===================== Pie de página ===================== -->
+    <footer class="eco-footer">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-5">
+                    <div class="eco-footer__brand">
+                        <span class="eco-brand__mark"><i class="bi bi-recycle"></i></span>
+                        <span><em class="eco-gradient-text">Eco</em>Tech</span>
+                    </div>
+                    <p style="max-width: 42ch">
+                        Gestión responsable de residuos electrónicos, reacondicionamiento de equipos y trazabilidad
+                        al servicio de una economía circular.
+                    </p>
+                </div>
+
+                <div class="col-6 col-lg-3">
+                    <h4 class="eco-footer__title">Navegación</h4>
+                    <ul class="eco-footer__links">
+                        <li><a href="index.php">Inicio</a></li>
+                        <li><a href="nosotros.html">Nosotros</a></li>
+                        <li><a href="servicios.html">Servicios</a></li>
+                        <li><a href="productos.html">Productos</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-6 col-lg-4">
+                    <h4 class="eco-footer__title">Contacto</h4>
+                    <ul class="eco-footer__links">
+                        <li><a href="contacto.php">Formulario de contacto</a></li>
+                        <li><a href="herramientas.html">Tecnología</a></li>
+                        <li><a href="login_user.php">Iniciar sesión</a></li>
+                        <li><a href="terminos_condiciones.html">Términos y condiciones</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="eco-footer__bottom d-flex flex-column flex-md-row justify-content-between gap-2">
+                <p>&copy; 2026 EcoTech. Todos los derechos reservados.</p>
+                <p>Diseñado y desarrollado en Colombia.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
+
+    <script src="../Js/theme.js?v=2"></script>
+
 </body>
 
 </html>

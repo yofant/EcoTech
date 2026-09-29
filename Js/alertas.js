@@ -1,3 +1,14 @@
+/* Paleta del tema (css/theme.css) para que las alertas no queden
+   desalineadas con el resto de la interfaz. */
+var ECO = {
+    bg: "#070b0a",
+    surface: "#101614",
+    text: "#e9f3ef",
+    muted: "#9db0aa",
+    primary: "#2ee68a",
+    border: "rgba(46, 230, 138, 0.25)"
+};
+
 function mostrarAlerta(status) {
     console.log('mostrarAlerta llamado con status:', status);
 
@@ -58,9 +69,11 @@ function mostrarAlerta(status) {
                     <source src="../images/Reci.mp4" type="video/mp4">
                 </video>
             `,
-            background: "#161816",
-            color: "#39BC15",
-            confirmButtonColor: "#39BC15"
+            background: ECO.bg,
+            color: ECO.text,
+            confirmButtonColor: ECO.primary,
+            confirmButtonText: "Continuar",
+            customClass: { popup: "eco-alerta" }
         });
         return;
     }

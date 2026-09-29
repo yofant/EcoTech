@@ -1,0 +1,107 @@
+/* EcoTech — Layout de la página de productos (html/productos.html)
+   Los componentes comunes vienen de css/theme.css. */
+
+.page-head {
+    padding-top: calc(var(--eco-nav-offset) + clamp(2.5rem, 6vw, 4.5rem));
+    padding-bottom: clamp(2rem, 4vw, 3rem);
+    text-align: center;
+}
+
+.page-head .eco-title {
+    max-width: 20ch;
+    margin-inline: auto;
+}
+
+/* Estado "en construcción" */
+.building {
+    display: grid;
+    place-items: center;
+    text-align: center;
+    padding: clamp(2.5rem, 6vw, 4.5rem) clamp(1.5rem, 4vw, 3rem);
+    border: 1px solid var(--eco-border);
+    border-radius: var(--eco-radius-lg);
+    background:
+        radial-gradient(30rem 20rem at 50% 0%, rgba(46, 230, 138, 0.14), transparent 70%),
+        linear-gradient(160deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.015));
+    box-shadow: var(--eco-shadow);
+}
+
+.building__icon {
+    display: grid;
+    place-items: center;
+    width: 74px;
+    height: 74px;
+    margin-bottom: 1.5rem;
+    border-radius: 22px;
+    background: var(--eco-glow-soft);
+    border: 1px solid var(--eco-border);
+    color: var(--eco-primary);
+    font-size: 2rem;
+}
+
+.building__title {
+    font-size: clamp(1.5rem, 3.2vw, 2.1rem);
+    margin-bottom: 0.75rem;
+}
+
+.building__text {
+    max-width: 46ch;
+    margin-inline: auto;
+    margin-bottom: 2rem;
+}
+
+.building__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.85rem;
+    justify-content: center;
+}
+
+/* Categorías previstas */
+.categories {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: clamp(1.25rem, 2.5vw, 1.75rem);
+}
+
+.category {
+    padding: clamp(1.4rem, 2.5vw, 1.9rem);
+    border: 1px solid var(--eco-border);
+    border-radius: var(--eco-radius-lg);
+    background: linear-gradient(160deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.015));
+    transition: transform var(--eco-base), border-color var(--eco-base), box-shadow var(--eco-base);
+}
+
+.category:hover {
+    transform: translateY(-5px);
+    border-color: var(--eco-border-strong);
+    box-shadow: var(--eco-shadow-lg), 0 0 34px var(--eco-glow-soft);
+}
+
+.category__icon {
+    display: grid;
+    place-items: center;
+    width: 50px;
+    height: 50px;
+    margin-bottom: 1.1rem;
+    border-radius: 14px;
+    background: var(--eco-glow-soft);
+    border: 1px solid var(--eco-border);
+    color: var(--eco-primary);
+    font-size: 1.4rem;
+    transition: transform var(--eco-base);
+}
+
+.category:hover .category__icon {
+    transform: translateY(-3px) scale(1.05);
+}
+
+.category h2 {
+    font-size: 1.15rem;
+    margin-bottom: 0.5rem;
+}
+
+.category p {
+    font-size: 0.93rem;
+    margin: 0;
+}

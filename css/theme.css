@@ -1,0 +1,862 @@
+/* ==========================================================================
+   EcoTech — Sistema de diseño
+   Tokenos + componentes compartidos por todas las páginas.
+   Los CSS por página (style.css, servicios.css, etc.) solo contienen
+   el layout específico; todo lo común vive aquí.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Tokenos
+   -------------------------------------------------------------------------- */
+:root {
+    /* Superficies */
+    --eco-bg: #070b0a;
+    --eco-bg-deep: #040706;
+    --eco-surface: rgba(255, 255, 255, 0.032);
+    --eco-surface-hover: rgba(255, 255, 255, 0.055);
+
+    /* Marca */
+    --eco-primary: #2ee68a;
+    --eco-primary-strong: #12c46e;
+    --eco-primary-dim: #1a9c5c;
+    --eco-accent: #7ef9c0;
+    --eco-glow: rgba(46, 230, 138, 0.35);
+    --eco-glow-soft: rgba(46, 230, 138, 0.12);
+
+    /* Texto */
+    --eco-text: #e9f3ef;
+    --eco-text-muted: #9db0aa;
+    --eco-text-dim: #6d817b;
+
+    /* Bordes y sombras */
+    --eco-border: rgba(46, 230, 138, 0.16);
+    --eco-border-strong: rgba(46, 230, 138, 0.34);
+    --eco-shadow: 0 18px 45px rgba(0, 0, 0, 0.55);
+    --eco-shadow-lg: 0 28px 70px rgba(0, 0, 0, 0.65);
+
+    /* Geometría */
+    --eco-radius-sm: 10px;
+    --eco-radius: 16px;
+    --eco-radius-lg: 24px;
+    --eco-radius-pill: 999px;
+
+    /* Ritmo */
+    --eco-section: clamp(4rem, 9vw, 7.5rem);
+    --eco-nav-offset: 76px;
+
+    /* Movimiento */
+    --eco-ease: cubic-bezier(0.22, 1, 0.36, 1);
+    --eco-fast: 0.2s var(--eco-ease);
+    --eco-base: 0.35s var(--eco-ease);
+    --eco-slow: 0.6s var(--eco-ease);
+
+    /* Tipografía */
+    --eco-font-display: "Space Grotesk", "Segoe UI", Tahoma, sans-serif;
+    --eco-font-body: "Inter", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* --------------------------------------------------------------------------
+   2. Base
+   -------------------------------------------------------------------------- */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: var(--eco-font-body);
+    color: var(--eco-text);
+    background-color: var(--eco-bg);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    line-height: 1.65;
+}
+
+/* Halos de fondo: dan profundidad sin Imagenes pesadas */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -2;
+    background:
+        radial-gradient(70rem 40rem at 12% -10%, rgba(46, 230, 138, 0.13), transparent 60%),
+        radial-gradient(55rem 35rem at 92% 8%, rgba(18, 196, 110, 0.1), transparent 62%),
+        radial-gradient(60rem 45rem at 50% 110%, rgba(46, 230, 138, 0.07), transparent 65%);
+    pointer-events: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: var(--eco-font-display);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+    color: var(--eco-text);
+}
+
+p {
+    color: var(--eco-text-muted);
+    margin-bottom: 1rem;
+}
+
+a {
+    color: var(--eco-primary);
+    text-decoration: none;
+    transition: color var(--eco-fast);
+}
+
+a:hover {
+    color: var(--eco-accent);
+}
+
+/* Foco visible y coherente en toda la web */
+:focus-visible {
+    outline: 2px solid var(--eco-primary);
+    outline-offset: 3px;
+    border-radius: 4px;
+}
+
+::selection {
+    background: var(--eco-primary);
+    color: var(--eco-bg-deep);
+}
+
+img {
+    max-width: 100%;
+}
+
+/* --------------------------------------------------------------------------
+   3. Layout
+   -------------------------------------------------------------------------- */
+.eco-section {
+    padding-block: var(--eco-section);
+    position: relative;
+}
+
+.eco-section--tight {
+    padding-block: clamp(2.5rem, 5vw, 4rem);
+}
+
+/* Compensa el navbar fijo */
+.eco-page {
+    padding-top: var(--eco-nav-offset);
+}
+
+.eco-shell {
+    max-width: 1180px;
+    margin-inline: auto;
+}
+
+/* --------------------------------------------------------------------------
+   4. Encabezados de sección
+   -------------------------------------------------------------------------- */
+.eco-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.4rem 0.95rem;
+    margin-bottom: 1.25rem;
+    border: 1px solid var(--eco-border);
+    border-radius: var(--eco-radius-pill);
+    background: var(--eco-glow-soft);
+    color: var(--eco-accent);
+    font-family: var(--eco-font-display);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+}
+
+.eco-eyebrow::before {
+    content: "";
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--eco-primary);
+    box-shadow: 0 0 10px var(--eco-glow);
+}
+
+.eco-title {
+    font-size: clamp(2rem, 4.6vw, 3.1rem);
+    margin-bottom: 0.75rem;
+}
+
+.eco-lead {
+    font-size: clamp(1rem, 1.6vw, 1.12rem);
+    color: var(--eco-text-muted);
+    max-width: 62ch;
+    margin-inline: auto;
+}
+
+.eco-section__head {
+    text-align: center;
+    margin-bottom: clamp(2.5rem, 5vw, 4rem);
+}
+
+/* Título con acento degradado reutilizable */
+.eco-gradient-text {
+    background: linear-gradient(120deg, var(--eco-primary) 0%, var(--eco-accent) 55%, var(--eco-primary) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+/* --------------------------------------------------------------------------
+   5. Navbar
+   -------------------------------------------------------------------------- */
+.eco-navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1030;
+    padding-block: 1.1rem;
+    background: rgba(7, 11, 10, 0.55);
+    backdrop-filter: blur(18px) saturate(140%);
+    -webkit-backdrop-filter: blur(18px) saturate(140%);
+    border-bottom: 1px solid transparent;
+    transition: background var(--eco-base), border-color var(--eco-base), padding var(--eco-base);
+}
+
+.eco-navbar.is-scrolled {
+    background: rgba(4, 7, 6, 0.88);
+    border-bottom-color: var(--eco-border);
+    padding-block: 0.7rem;
+}
+
+.eco-navbar .navbar-brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-family: var(--eco-font-display);
+    font-size: 1.35rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    color: var(--eco-text);
+    margin: 0;
+    padding: 0;
+}
+
+.eco-navbar .navbar-brand:hover,
+.eco-navbar .navbar-brand:focus {
+    color: var(--eco-text);
+}
+
+.eco-brand__mark {
+    display: grid;
+    place-items: center;
+    width: 34px;
+    height: 34px;
+    border-radius: 10px;
+    background: linear-gradient(140deg, var(--eco-primary), var(--eco-primary-strong));
+    color: var(--eco-bg-deep);
+    font-size: 1.05rem;
+    box-shadow: 0 6px 18px rgba(18, 196, 110, 0.35);
+    transition: transform var(--eco-base);
+}
+
+.eco-navbar .navbar-brand:hover .eco-brand__mark {
+    transform: rotate(-8deg) scale(1.06);
+}
+
+.eco-brand__text {
+    color: var(--eco-text);
+}
+
+.eco-brand__text em {
+    font-style: normal;
+    color: var(--eco-primary);
+}
+
+.eco-navbar .navbar-nav {
+    gap: 0.35rem;
+    align-items: center;
+}
+
+.eco-navbar .nav-link {
+    position: relative;
+    padding: 0.5rem 0.9rem !important;
+    border-radius: var(--eco-radius-pill);
+    color: var(--eco-text-muted);
+    font-size: 0.92rem;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    transition: color var(--eco-fast), background var(--eco-fast);
+}
+
+.eco-navbar .nav-link:hover,
+.eco-navbar .nav-link:focus {
+    color: var(--eco-text);
+    background: var(--eco-surface-hover);
+}
+
+.eco-navbar .nav-link.is-active {
+    color: var(--eco-primary);
+}
+
+/* actions del navbar (CTA a la derecha) */
+.eco-navbar__cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.55rem 1.15rem;
+    border-radius: var(--eco-radius-pill);
+    background: linear-gradient(120deg, var(--eco-primary), var(--eco-primary-strong));
+    color: var(--eco-bg-deep) !important;
+    font-size: 0.9rem;
+    font-weight: 600;
+    box-shadow: 0 8px 22px rgba(18, 196, 110, 0.28);
+    transition: transform var(--eco-fast), box-shadow var(--eco-fast);
+}
+
+.eco-navbar__cta:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 28px rgba(18, 196, 110, 0.42);
+}
+
+.eco-navbar .navbar-toggler {
+    padding: 0.45rem 0.6rem;
+    border: 1px solid var(--eco-border);
+    border-radius: 10px;
+}
+
+.eco-navbar .navbar-toggler:focus {
+    box-shadow: 0 0 0 0.2rem var(--eco-glow-soft);
+}
+
+.eco-navbar .navbar-toggler-icon {
+    filter: invert(1) opacity(0.85);
+}
+
+/* Menú móvil alineado a la derecha */
+@media (max-width: 991.98px) {
+    .eco-navbar .navbar-collapse {
+        margin-top: 0.9rem;
+        padding: 0.75rem;
+        border: 1px solid var(--eco-border);
+        border-radius: var(--eco-radius);
+        background: rgba(4, 7, 6, 0.96);
+        backdrop-filter: blur(18px);
+        -webkit-backdrop-filter: blur(18px);
+    }
+
+    .eco-navbar .navbar-nav {
+        gap: 0.15rem;
+    }
+
+    .eco-navbar .nav-link {
+        padding: 0.7rem 1rem !important;
+        font-size: 1rem;
+    }
+
+    .eco-navbar__cta {
+        width: 100%;
+        justify-content: center;
+        margin-top: 0.5rem;
+    }
+}
+
+/* --------------------------------------------------------------------------
+   6. Botones
+   -------------------------------------------------------------------------- */
+.eco-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.55rem;
+    padding: 0.8rem 1.7rem;
+    border: 1px solid transparent;
+    border-radius: var(--eco-radius-pill);
+    font-family: var(--eco-font-body);
+    font-size: 0.95rem;
+    font-weight: 600;
+    line-height: 1.2;
+    text-align: center;
+    cursor: pointer;
+    transition: transform var(--eco-fast), box-shadow var(--eco-fast), background var(--eco-fast),
+        border-color var(--eco-fast), color var(--eco-fast);
+}
+
+.eco-btn:hover {
+    transform: translateY(-2px);
+}
+
+.eco-btn--primary {
+    background: linear-gradient(120deg, var(--eco-primary), var(--eco-primary-strong));
+    color: var(--eco-bg-deep);
+    box-shadow: 0 10px 26px rgba(18, 196, 110, 0.3);
+}
+
+.eco-btn--primary:hover {
+    color: var(--eco-bg-deep);
+    box-shadow: 0 16px 36px rgba(18, 196, 110, 0.45);
+}
+
+.eco-btn--ghost {
+    background: var(--eco-surface);
+    border-color: var(--eco-border);
+    color: var(--eco-text);
+}
+
+.eco-btn--ghost:hover {
+    background: var(--eco-surface-hover);
+    border-color: var(--eco-border-strong);
+    color: var(--eco-text);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.4);
+}
+
+.eco-btn--block {
+    width: 100%;
+}
+
+.eco-btn--lg {
+    padding: 0.95rem 2rem;
+    font-size: 1rem;
+}
+
+/* --------------------------------------------------------------------------
+   7. Tarjetas
+   -------------------------------------------------------------------------- */
+.eco-card {
+    position: relative;
+    height: 100%;
+    padding: clamp(1.5rem, 2.6vw, 2.1rem);
+    border: 1px solid var(--eco-border);
+    border-radius: var(--eco-radius-lg);
+    background: linear-gradient(160deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.015));
+    box-shadow: var(--eco-shadow);
+    overflow: hidden;
+    transition: transform var(--eco-base), border-color var(--eco-base), box-shadow var(--eco-base);
+}
+
+/* Brillo superior sutil que aparece al hover */
+.eco-card::after {
+    content: "";
+    position: absolute;
+    inset: 0 0 auto 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--eco-primary), transparent);
+    opacity: 0;
+    transition: opacity var(--eco-base);
+}
+
+.eco-card:hover {
+    transform: translateY(-6px);
+    border-color: var(--eco-border-strong);
+    box-shadow: var(--eco-shadow-lg), 0 0 40px var(--eco-glow-soft);
+}
+
+.eco-card:hover::after {
+    opacity: 0.6;
+}
+
+.eco-card__title {
+    font-size: 1.32rem;
+    margin-bottom: 0.75rem;
+}
+
+.eco-card__text {
+    color: var(--eco-text-muted);
+    font-size: 0.97rem;
+    margin-bottom: 0;
+}
+
+.eco-card__icon {
+    display: grid;
+    place-items: center;
+    width: 52px;
+    height: 52px;
+    margin-bottom: 1.15rem;
+    border-radius: 14px;
+    background: var(--eco-glow-soft);
+    border: 1px solid var(--eco-border);
+    color: var(--eco-primary);
+    font-size: 1.5rem;
+    transition: transform var(--eco-base), background var(--eco-base);
+}
+
+.eco-card:hover .eco-card__icon {
+    transform: translateY(-3px) scale(1.05);
+    background: rgba(46, 230, 138, 0.2);
+}
+
+.eco-card__media {
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+    border-radius: var(--eco-radius);
+    margin-bottom: 1.35rem;
+    border: 1px solid var(--eco-border);
+    transition: transform var(--eco-slow);
+}
+
+.eco-card:hover .eco-card__media {
+    transform: scale(1.03);
+}
+
+/* Tarjeta centrada en su columna */
+.eco-card--center {
+    text-align: center;
+}
+
+.eco-card--center .eco-card__icon {
+    margin-inline: auto;
+}
+
+/* --------------------------------------------------------------------------
+   8. Formularios
+   -------------------------------------------------------------------------- */
+.eco-form .form-label {
+    display: block;
+    margin-bottom: 0.45rem;
+    color: var(--eco-text-muted);
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+.eco-form .form-control {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    border: 1px solid var(--eco-border);
+    border-radius: var(--eco-radius-sm);
+    background: rgba(255, 255, 255, 0.04);
+    color: var(--eco-text);
+    font-family: var(--eco-font-body);
+    font-size: 0.95rem;
+    transition: border-color var(--eco-fast), background var(--eco-fast), box-shadow var(--eco-fast);
+}
+
+.eco-form .form-control::placeholder {
+    color: var(--eco-text-dim);
+}
+
+.eco-form .form-control:hover {
+    border-color: var(--eco-border-strong);
+}
+
+.eco-form .form-control:focus {
+    background: rgba(255, 255, 255, 0.06);
+    border-color: var(--eco-primary);
+    color: var(--eco-text);
+    box-shadow: 0 0 0 0.2rem var(--eco-glow-soft);
+    outline: none;
+}
+
+.eco-form .form-control:focus::placeholder {
+    color: var(--eco-text-dim);
+}
+
+.eco-form textarea.form-control {
+    resize: vertical;
+    min-height: 120px;
+}
+
+.eco-form select.form-control option {
+    background: var(--eco-bg-deep);
+    color: var(--eco-text);
+}
+
+/* Icono dentro del campo */
+.eco-form .input-group {
+    flex-wrap: nowrap;
+}
+
+/* Dentro de un input-group el campo debe ocupar el espacio restante,
+   no forzar un salto de línea */
+.eco-form .input-group .form-control {
+    width: auto;
+    flex: 1 1 auto;
+    min-width: 0;
+}
+
+.eco-form .input-group-text {
+    padding: 0 0.95rem;
+    border: 1px solid var(--eco-border);
+    border-right: none;
+    border-radius: var(--eco-radius-sm) 0 0 var(--eco-radius-sm);
+    background: rgba(255, 255, 255, 0.04);
+    color: var(--eco-primary);
+    font-size: 0.95rem;
+    transition: border-color var(--eco-fast), background var(--eco-fast);
+}
+
+.eco-form .input-group:focus-within .input-group-text {
+    border-color: var(--eco-primary);
+    background: rgba(255, 255, 255, 0.06);
+}
+
+.eco-form .input-group .form-control {
+    border-radius: 0 var(--eco-radius-sm) var(--eco-radius-sm) 0;
+}
+
+/* Casilla de verificación */
+.eco-check {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.65rem;
+    color: var(--eco-text-muted);
+    font-size: 0.88rem;
+    cursor: pointer;
+}
+
+.eco-check input[type="checkbox"] {
+    flex: 0 0 auto;
+    width: 1.05rem;
+    height: 1.05rem;
+    margin-top: 0.15rem;
+    accent-color: var(--eco-primary);
+    cursor: pointer;
+}
+
+/* --------------------------------------------------------------------------
+   9. Pie de página
+   -------------------------------------------------------------------------- */
+.eco-footer {
+    margin-top: auto;
+    padding-block: clamp(3rem, 6vw, 4.5rem) 2rem;
+    border-top: 1px solid var(--eco-border);
+    background: linear-gradient(180deg, transparent, rgba(4, 7, 6, 0.9));
+}
+
+.eco-footer__brand {
+    font-family: var(--eco-font-display);
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--eco-text);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-bottom: 1rem;
+}
+
+.eco-footer__title {
+    font-family: var(--eco-font-display);
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--eco-text-dim);
+    margin-bottom: 1.1rem;
+}
+
+.eco-footer__links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 0.6rem;
+}
+
+.eco-footer__links a {
+    color: var(--eco-text-muted);
+    font-size: 0.92rem;
+    transition: color var(--eco-fast), padding-left var(--eco-fast);
+}
+
+.eco-footer__links a:hover {
+    color: var(--eco-primary);
+    padding-left: 0.3rem;
+}
+
+.eco-footer__bottom {
+    margin-top: clamp(2rem, 4vw, 3rem);
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--eco-border);
+}
+
+.eco-footer__bottom p {
+    margin: 0;
+    color: var(--eco-text-dim);
+    font-size: 0.85rem;
+}
+
+/* --------------------------------------------------------------------------
+   10. Cifras destacadas
+   -------------------------------------------------------------------------- */
+.eco-stat__value {
+    font-family: var(--eco-font-display);
+    font-size: clamp(1.9rem, 4vw, 2.6rem);
+    font-weight: 700;
+    line-height: 1;
+    background: linear-gradient(120deg, var(--eco-primary), var(--eco-accent));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    margin-bottom: 0.5rem;
+}
+
+.eco-stat__label {
+    color: var(--eco-text-muted);
+    font-size: 0.88rem;
+    margin: 0;
+}
+
+/* --------------------------------------------------------------------------
+   11. Utilidades
+   -------------------------------------------------------------------------- */
+.eco-text-muted {
+    color: var(--eco-text-muted) !important;
+}
+
+.eco-text-dim {
+    color: var(--eco-text-dim) !important;
+}
+
+.eco-text-accent {
+    color: var(--eco-primary) !important;
+}
+
+.eco-divider {
+    height: 1px;
+    border: 0;
+    margin-block: clamp(2.5rem, 5vw, 4rem);
+    background: linear-gradient(90deg, transparent, var(--eco-border), transparent);
+}
+
+/* Píldora / etiqueta */
+.eco-tag {
+    display: inline-block;
+    padding: 0.3rem 0.75rem;
+    border: 1px solid var(--eco-border);
+    border-radius: var(--eco-radius-pill);
+    background: var(--eco-glow-soft);
+    color: var(--eco-accent);
+    font-size: 0.74rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+/* --------------------------------------------------------------------------
+   12. Animación al hacer scroll
+   -------------------------------------------------------------------------- */
+/* El estado oculto solo se aplica si el script confirma que puede revertirlo */
+.js-reveal [data-reveal] {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s var(--eco-ease), transform 0.7s var(--eco-ease);
+    transition-delay: var(--reveal-delay, 0ms);
+}
+
+.js-reveal [data-reveal].is-revealed {
+    opacity: 1;
+    transform: none;
+}
+
+/* --------------------------------------------------------------------------
+   13. Preferencias de movimiento
+   -------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.001ms !important;
+        scroll-behavior: auto !important;
+    }
+
+    .js-reveal [data-reveal] {
+        opacity: 1;
+        transform: none;
+    }
+    .eco-card:hover,
+    .eco-btn:hover,
+    .eco-navbar__cta:hover {
+        transform: none;
+    }
+}
+
+
+/* --------------------------------------------------------------------------
+   14. Alertas (SweetAlert2)
+   Se estiliza el popup globalmente para que TODAS las alertas respeten el
+   tema, sin tener que repetir opciones en cada Swal.fire().
+   -------------------------------------------------------------------------- */
+.swal2-popup {
+    background: var(--eco-bg) !important;
+    color: var(--eco-text) !important;
+    border: 1px solid var(--eco-border);
+    border-radius: var(--eco-radius-lg) !important;
+    box-shadow: var(--eco-shadow-lg) !important;
+    font-family: var(--eco-font-body) !important;
+}
+
+.swal2-title {
+    font-family: var(--eco-font-display);
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    color: var(--eco-text);
+}
+
+.swal2-html-container {
+    color: var(--eco-text-muted);
+    font-size: 0.95rem;
+}
+
+.swal2-icon {
+    border-color: var(--eco-border-strong);
+}
+
+.swal2-icon.swal2-success {
+    color: var(--eco-primary);
+}
+
+.swal2-icon.swal2-warning {
+    color: #f0b429;
+}
+
+.swal2-icon.swal2-error {
+    color: #f2555a;
+}
+
+.swal2-icon.swal2-info,
+.swal2-icon.swal2-question {
+    color: var(--eco-primary);
+}
+
+.swal2-confirm,
+.swal2-deny,
+.swal2-cancel {
+    border-radius: var(--eco-radius-pill) !important;
+    font-weight: 600;
+    box-shadow: none !important;
+}
+
+.swal2-confirm {
+    background: var(--eco-primary) !important;
+    color: var(--eco-bg-deep) !important;
+}
+
+.swal2-confirm:hover {
+    background: var(--eco-accent) !important;
+}
+
+.swal2-cancel {
+    background: transparent !important;
+    color: var(--eco-text-muted) !important;
+    border: 1px solid var(--eco-border) !important;
+}
+
+.swal2-backdrop-filter {
+    backdrop-filter: blur(3px);
+}
+
+/* Variante con video (registro exitoso) */
+.eco-alerta .swal2-title {
+    margin-bottom: 1rem;
+}
+
+.eco-alerta video {
+    border-radius: var(--eco-radius);
+    border: 1px solid var(--eco-border);
+}
